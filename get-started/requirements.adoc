@@ -1,0 +1,314 @@
+---
+sidebar: sidebar 
+permalink: get-started/requirements.html 
+keywords: what are astra kubernetes requirements, astra control requirements, astra supported versions, apps, supported apps, mariadb, mysql, postgres, kubernetes version, ubuntu, image type, networking, environment, operational, operational environment, hosting, host, cluster, clusters, tanzu, tkg, tkgi, grid, kubernetes, k8s 
+summary: 通过验证对 Kubernetes 集群，应用程序和 Web 浏览器的支持，开始使用 Astra 控制中心。 
+---
+= Astra 控制中心要求
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/get-started/
+
+
+首先验证操作环境，应用程序集群，应用程序，许可证和 Web 浏览器的就绪情况。
+
+*  environment requirements
+*  storage backends
+*  cluster requirements
+*  management requirements
+*  prerequisites
+*  to the internet
+* 
+*  for on-premises Kubernetes clusters
+*  requirements
+*  web browsers
+
+
+
+
+== 操作环境要求
+
+Astra控制中心已在以下类型的操作环境中进行了验证：
+
+* Google Anthos 1.10或1.11
+* Kubernetes 1.22到1.24
+* Rancher Kubernetes Engine (RKE）：
++
+** 采用Rancher 2.5.12的RKE1.2.16和采用2.6.3的RKE1.3.3
+** RKE2 (v1.23.6+rke2r2)、带Rancher 2.6.3
+
+
+* Red Hat OpenShift容器平台4.8、4.9或4.10
+* VMware Tanzu Kubernetes Grid 1.4或1.5
+* VMware Tanzu Kubernetes Grid Integrated Edition 1.12.2或1.13
+
+
+确保您选择托管 Astra 控制中心的操作环境满足环境官方文档中概述的基本资源要求。除了环境的资源要求之外， Astra 控制中心还需要以下资源：
+
+|===
+| 组件 | 要求 
+
+
+| 存储后端容量 | 至少500 GB可用 
+
+
+| 工作节点 | 总共至少 3 个辅助节点，每个节点有 4 个 CPU 核和 12 GB RAM 
+
+
+| FQDN 地址 | Astra 控制中心的 FQDN 地址 
+
+
+| Astra Trident  a| 
+Astra Trident 21.10.1或更高版本已安装并配置Astra Trident 22.07或更高版本、用于基于SnapMirror的应用程序复制
+
+|===
+
+NOTE: 这些要求假定 Astra 控制中心是运行环境中唯一运行的应用程序。如果环境运行的是其他应用程序，请相应地调整这些最低要求。
+
+* * 映像注册表 * ：您必须具有可将 Astra 控制中心构建映像推送到的现有私有 Docker 映像注册表。您需要提供要将映像上传到的映像注册表的 URL 。
+* * 天文学 Trident / ONTAP 配置 * ：天文学控制中心要求创建一个存储类并将其设置为默认存储类。Astra 控制中心支持由 Astra Trident 提供的以下 ONTAP 驱动程序：
++
+** ontap-NAS
+** ontap-nas-flexgroup
+** ontap-san
+** ontap-san-economy.
+
+
+
+
+[NOTE]
+====
+在 OpenShift 环境中克隆应用程序期间， Astra Control Center 需要允许 OpenShift 挂载卷并更改文件所有权。因此，您需要配置 ONTAP 卷导出策略以允许执行这些操作。您可以使用以下命令执行此操作：
+
+. `export-policy rule modify -vserver <storage virtual machine name> -policyname <policy name> -ruleindex 1 -superuser sys`
+. `export-policy rule modify -vserver <storage virtual machine name> -policyname <policy name> -ruleindex 1 -anon 65534`
+
+
+====
+
+NOTE: 如果您计划将第二个 OpenShift 操作环境添加为托管计算资源，则需要确保已启用 Astra Trident 卷快照功能。要使用 Astra Trident 启用和测试卷快照， https://docs.netapp.com/us-en/trident/trident-use/vol-snapshots.html["请参见官方的 Astra Trident 说明"^]。
+
+
+
+=== VMware Tanzu Kubernetes Grid 集群要求
+
+在 VMware Tanzu Kubernetes Grid （ TKG ）或 Tanzu Kubernetes Grid Integrated Edition （ TKGi ）集群上托管 Astra Control Center 时，请记住以下注意事项。
+
+* 在任何要由 Astra Control 管理的应用程序集群上禁用 TKG 或 TKGi 默认存储类强制实施。您可以通过编辑来执行此操作 `TanzuKubernetesCluster` 命名空间集群上的资源。
+* 在安装Astra控制中心时、会在受POD安全策略(PSP)限制的环境中创建以下资源：
++
+** POD安全策略
+** RBAC角色
+** RBAC角色绑定RBAC角色和角色绑定资源在中创建 `netapp-acc` 命名空间。
+
+
+
+
+* 在 TKG 或 TKGi 环境中部署 Astra 控制中心时，请注意 Astra Trident 的特定要求。有关详细信息，请参见 https://docs.netapp.com/us-en/trident/trident-get-started/kubernetes-deploy.html#other-known-configuration-options["Astra Trident 文档"^]。
+
+
+
+NOTE: 默认的 VMware TKG 和 TKGi 配置文件令牌将在部署后 10 小时过期。如果您使用的是 Tanzu 产品组合，则必须使用未过期的令牌生成 Tanzu Kubernetes 集群配置文件，以防止 Astra 控制中心与受管应用程序集群之间出现连接问题。有关说明，请访问 https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/nsx-application-platform/GUID-52A52C0B-9575-43B6-ADE2-E8640E22C29F.html["VMware NSX-T 数据中心产品文档。"]
+
+
+
+=== Google Anthos集群要求
+
+在Google Anthos集群上托管Astra控制中心时、请注意、Google Anthos默认包括MetalLB负载平衡器和Istio入口网关服务、使您可以在安装期间轻松使用Astra控制中心的通用入口功能。请参见 link:install_acc.html#configure-astra-control-center["配置 Astra 控制中心"] 了解详细信息。
+
+
+
+== 支持的存储后端
+
+Astra 控制中心支持以下存储后端。
+
+* NetApp ONTAP 9.5 或更高版本的 AFF 和 FAS 系统
+* NetApp ONTAP 9.8或更高版本的AFF 和FAS 系统、用于基于SnapMirror的应用程序复制
+* NetApp Cloud Volumes ONTAP
+
+
+要使用Astra控制中心、请根据您需要完成的任务、验证您是否具有以下ONTAP 许可证：
+
+* FlexClone
+* SnapMirror：可选。只有在使用SnapMirror技术复制到远程系统时才需要。请参见 https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-licensing-concept.html["SnapMirror许可证信息"^]。
+* S3许可证：可选。只有ONTAP S3存储分段才需要
+
+
+您可能需要检查ONTAP 系统是否具有所需的许可证。请参见 https://docs.netapp.com/us-en/ontap/system-admin/manage-licenses-concept.html["管理ONTAP 许可证"^]。
+
+
+
+== 应用程序集群要求
+
+对于计划从 Astra 控制中心管理的集群， Astra 控制中心具有以下要求。如果您计划管理的集群是托管 Astra 控制中心的运行环境集群，则这些要求也适用。
+
+* Kubernetes 的最新版本 https://kubernetes-csi.github.io/docs/snapshot-controller.html["Snapshot 控制器组件"^] 已安装
+* Astra Trident https://docs.netapp.com/us-en/trident/trident-use/vol-snapshots.html["volumesnapshotclass 对象"^] 已由管理员定义
+* 集群上存在默认 Kubernetes 存储类
+* 至少将一个存储类配置为使用 Astra Trident
+
+
+
+NOTE: 您的应用程序集群应具有 `kubeconfig.yaml` 仅定义一个_context_元素的文件。请访问的 Kubernetes 文档 https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/["有关创建 kubeconfig 文件的信息"^]。
+
+
+NOTE: 在Rancher环境中管理应用程序集群时、请在中修改应用程序集群的默认上下文 `kubeconfig` Rancher提供的文件、用于使用控制平面上下文、而不是Rancher API服务器上下文。这样可以减少 Rancher API 服务器上的负载并提高性能。
+
+
+
+== 应用程序管理要求
+
+Astra Control 具有以下应用程序管理要求：
+
+* * 许可 * ：要使用 Astra 控制中心管理应用程序，您需要获得 Astra 控制中心许可证。
+* * 命名空间 * ： Astra Control 要求一个应用程序不能跨越多个命名空间，但一个命名空间可以包含多个应用程序。
+* * 存储类 * ：如果您安装的应用程序明确设置了 StorageClass ，并且需要克隆该应用程序，则克隆操作的目标集群必须具有最初指定的 StorageClass 。将显式设置了 StorageClass 的应用程序克隆到不具有相同 StorageClass 的集群将失败。
+* * Kubernetes Resources* ：使用非 Astra Control 收集的 Kubernetes 资源的应用程序可能没有完整的应用程序数据管理功能。Astra Control 收集以下 Kubernetes 资源：
++
+[cols="1,1,1"]
+|===
+
+
+| ClusterRole | ClusterRoleBinding. | 配置映射 
+
+
+| cronjob | 自定义资源定义 | 自定义资源 
+
+
+| DemonSet | DeploymentConfig | HorizontalPodAutoscaler 
+
+
+| 传入 | MutatingWebhook | 网络策略 
+
+
+| PersistentVolumeClaim | POD | PodDisruptionBuget 
+
+
+| 播客模板 | ReplicaSet | Role 
+
+
+| RoleBinding. | 路由 | 机密 
+
+
+| 服务 | ServiceAccount | 状态集 
+
+
+| 验证 Webhook |  |  
+|===
+
+
+
+
+== 复制前提条件
+
+Astra Control应用程序复制要求在开始之前必须满足以下前提条件：
+
+* 为了实现无缝灾难恢复、我们建议您在第三个故障域或二级站点中部署Astra控制中心。
+* 应用程序的主机Kubernetes集群和目标Kubernetes集群必须可用并连接到两个ONTAP 集群、理想情况下、它们位于不同的故障域或站点。
+* ONTAP 集群和主机SVM必须已配对。请参见 https://docs.netapp.com/us-en/ontap-sm-classic/peering/index.html["集群和 SVM 对等概述"^]。
+* 配对的远程SVM必须可供目标集群上的Trident使用。
+* 源和目标ONTAP 集群上必须同时存在Trident 22.07或更高版本。
+* 必须在源和目标ONTAP 集群上启用使用数据保护包的ONTAP SnapMirror异步许可证。请参见 https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-licensing-concept.html["ONTAP 中的SnapMirror许可概述"^]。
+* 将ONTAP 存储后端添加到Astra控制中心时、请应用具有"admin"角色的用户凭据、该角色具有访问方法 `http` 和 `ontapi` 已在两个ONTAP 集群上启用。请参见 https://docs.netapp.com/us-en/ontap-sm-classic/online-help-96-97/concept_cluster_user_accounts.html#users-list["管理用户帐户"^] 有关详细信息 ...
+* 源和目标Kubernetes集群以及ONTAP 集群都必须由Astra Control进行管理。
++
+
+NOTE: 您可以同时按相反方向复制另一个应用程序(在另一个集群或站点上运行)。例如、应用程序A、B、C可以从数据中心1复制到数据中心2；应用程序X、Y、Z可以从数据中心2复制到数据中心1。
+
+
+
+了解操作方法 link:../use/replicate_snapmirror.html["使用SnapMirror技术将应用程序复制到远程系统"]。
+
+
+
+== 支持的应用程序安装方法
+
+Astra Control 支持以下应用程序安装方法：
+
+* * 清单文件 * ： Astra Control 支持使用 kubectl 从清单文件安装的应用程序。例如：
++
+[listing]
+----
+kubectl apply -f myapp.yaml
+----
+* * Helm 3* ：如果使用 Helm 安装应用程序，则 Astra Control 需要 Helm 版本 3 。完全支持管理和克隆随 Helm 3 安装的应用程序（或从 Helm 2 升级到 Helm 3 ）。不支持管理随 Helm 2 安装的应用程序。
+* * 操作员部署的应用程序 * ： Astra Control 支持使用命名空间范围的运算符安装的应用程序。以下是已针对此安装模式验证的一些应用程序：
++
+** https://github.com/k8ssandra/cass-operator/tree/v1.7.1["Apache K8ssandra"^]
+** https://github.com/jenkinsci/kubernetes-operator["Jenkins CI"^]
+** https://github.com/percona/percona-xtradb-cluster-operator["Percona XtraDB 集群"^]
+
+
+
+
+
+NOTE: 操作员及其安装的应用程序必须使用相同的命名空间；您可能需要为操作员修改部署 .yaml 文件，以确保情况确实如此。
+
+
+
+== 访问 Internet
+
+您应确定是否可以从外部访问 Internet 。否则，某些功能可能会受到限制，例如从 NetApp Cloud Insights 接收监控和指标数据或向发送支持包 https://mysupport.netapp.com/site/["NetApp 支持站点"^]。
+
+
+
+== 许可证
+
+要实现全部功能， Astra 控制中心需要获得 Astra 控制中心许可证。从 NetApp 获取评估版许可证或完整许可证。您需要一个许可证来保护应用程序和数据。请参见 link:../concepts/intro.html["Astra控制中心功能"] 了解详细信息。
+
+您可以使用评估版许可证试用Astra控制中心、这样、您可以在自下载此许可证之日起的90天内使用Astra控制中心。您可以通过注册注册注册免费试用版 link:https://cloud.netapp.com/astra-register["此处"^]。
+
+有关ONTAP 存储后端所需许可证的详细信息、请参见 link:../get-started/requirements.html["支持的存储后端"]。
+
+有关许可证工作原理的详细信息、请参见 link:../concepts/licensing.html["许可"]。
+
+
+
+== 内部 Kubernetes 集群的传入
+
+您可以选择 Astra 控制中心使用的网络传入类型。默认情况下， Astra 控制中心会将 Astra 控制中心网关（ service/traefik ）部署为集群范围的资源。如果您的环境允许使用服务负载平衡器，则 Astra 控制中心也支持使用服务负载平衡器。如果您希望使用服务负载平衡器，但尚未配置此平衡器，则可以使用 MetalLB 负载平衡器自动为该服务分配外部 IP 地址。在内部 DNS 服务器配置中，您应将为 Astra 控制中心选择的 DNS 名称指向负载平衡的 IP 地址。
+
+
+NOTE: 如果要在Tanzu Kubernetes Grid集群上托管Astra控制中心、请使用 `kubectl get nsxlbmonitors -A` 命令以查看是否已将服务监控器配置为接受传入流量。如果存在一个，则不应安装 MetalLB ，因为现有服务监控器将覆盖任何新的负载平衡器配置。
+
+有关详细信息，请参见 link:../get-started/install_acc.html#set-up-ingress-for-load-balancing["设置传入以进行负载平衡"]。
+
+
+
+== 网络要求
+
+托管 Astra 控制中心的操作环境使用以下 TCP 端口进行通信。您应确保允许这些端口通过任何防火墙，并将防火墙配置为允许来自 Astra 网络的任何 HTTPS 传出流量。某些端口需要在托管 Astra 控制中心的环境与每个受管集群之间进行双向连接（请在适用时注明）。
+
+
+NOTE: 您可以在双堆栈 Kubernetes 集群中部署 Astra 控制中心，而 Astra 控制中心则可以管理为双堆栈操作配置的应用程序和存储后端。有关双堆栈集群要求的详细信息，请参见 https://kubernetes.io/docs/concepts/services-networking/dual-stack/["Kubernetes 文档"^]。
+
+|===
+| 源 | 目标 | Port | 协议 | 目的 
+
+
+| 客户端 PC | Astra 控制中心 | 443. | HTTPS | UI / API 访问 - 确保托管 Astra 控制中心的集群与每个受管集群之间的此端口是双向开放的 
+
+
+| 指标使用者 | Astra 控制中心工作节点 | 9090 | HTTPS | 指标数据通信—确保每个受管集群都可以访问托管 Astra 控制中心的集群上的此端口 （需要双向通信） 
+
+
+| Astra 控制中心 | 托管 Cloud Insights 服务 (https://cloudinsights.netapp.com)[] | 443. | HTTPS | Cloud Insights 通信 
+
+
+| Astra 控制中心 | Amazon S3 存储分段提供商 (https://my-bucket.s3.us-west-2.amazonaws.com/)[] | 443. | HTTPS | Amazon S3 存储通信 
+
+
+| Astra 控制中心 | NetApp AutoSupport (https://support.netapp.com)[] | 443. | HTTPS | NetApp AutoSupport 通信 
+|===
+
+
+== 支持的 Web 浏览器
+
+Astra 控制中心支持最新版本的 Firefox ， Safari 和 Chrome ，最小分辨率为 1280 x 720 。
+
+
+
+== 下一步行动
+
+查看 link:quick-start.html["快速入门"] 概述。

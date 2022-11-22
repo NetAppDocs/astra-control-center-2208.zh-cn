@@ -1,0 +1,96 @@
+---
+sidebar: sidebar 
+permalink: release-notes/known-issues.html 
+keywords: astra, control center, bugs, known issues, problems 
+summary: 已知问题可确定可能妨碍您成功使用此版本产品的问题。 
+---
+= 已知问题
+:hardbreaks:
+:allow-uri-read: 
+:source-highlighter: highlight.js
+:icons: font
+:imagesdir: ../media/release-notes/
+
+
+已知问题可确定可能妨碍您成功使用此版本产品的问题。
+
+以下已知问题会影响当前版本：
+
+.应用程序
+*  of an app results in PV size larger than original PV
+*  clones fail using a specific version of PostgreSQL
+*  clones fail when using Service Account level OCP Security Context Constraints (SCC)
+*  clones fail after an application is deployed with a set storage class
+*  backups and snapshots fail if the volumesnapshotclass is added after a cluster is managed
+
+
+.集群
+*  a cluster with Astra Control Center fails when default kubeconfig file contains more than one context
+
+
+.其他问题
+*  data management operations fail with Internal Service Error (500) when Astra Trident is offline
+*  might fail with snapshot controller version 4.2.0
+
+
+
+
+== 还原应用程序会导致 PV 大小大于原始 PV
+
+如果在创建备份后调整永久性卷的大小，然后从该备份还原，则此永久性卷的大小将与 PV 的新大小匹配，而不是使用备份的大小。
+
+
+
+== 使用特定版本的 PostgreSQL 时应用程序克隆失败
+
+使用 BitNami PostgreSQL 11.5.0 图表时，同一集群中的应用程序克隆始终会失败。要成功克隆，请使用图表的早期或更高版本。
+
+
+
+== 使用服务帐户级别 OCP 安全上下文限制（ SCC ）时应用程序克隆失败
+
+如果在 OpenShift 容器平台集群的命名空间中的服务帐户级别配置了原始安全上下文约束，则应用程序克隆可能会失败。如果应用程序克隆失败、它将显示在Astra控制中心的受管应用程序区域中、并显示状态 `Removed`。请参见 https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra/Application_clone_is_failing_for_an_application_in_Astra_Control_Center["知识库文章"^] 有关详细信息 ...
+
+
+
+== 如果在管理集群后添加了volumesnapshotclass、则应用程序备份和快照将失败
+
+备份和快照失败、并显示 `UI 500 error` 在此情景中。作为临时解决策 、刷新应用程序列表。
+
+
+
+== 使用设置的存储类部署应用程序后，应用程序克隆将失败
+
+在部署应用程序并明确设置存储类后(例如、 `helm install ...-set global.storageClass=netapp-cvs-perf-extreme`)、之后尝试克隆应用程序时、目标集群必须具有最初指定的存储类。将具有显式设置的存储类的应用程序克隆到没有相同存储类的集群将失败。此情况下没有恢复步骤。
+
+
+
+== 如果默认的 kubeconfig 文件包含多个上下文，则使用 Astra 控制中心管理集群将失败
+
+不能将 kubeconfig 与多个集群和上下文结合使用。请参见 link:https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Astra/Managing_cluster_with_Astra_Control_Center_may_fail_when_using_default_kubeconfig_file_contains_more_than_one_context["知识库文章"^] 有关详细信息 ...
+
+
+
+== 当 Astra Trident 脱机时，应用程序数据管理操作失败，并显示内部服务错误（ 500 ）
+
+如果应用程序集群上的 Astra Trident 脱机（并恢复联机），并且在尝试应用程序数据管理时遇到 500 个内部服务错误，请重新启动应用程序集群中的所有 Kubernetes 节点以还原功能。
+
+
+
+== 使用 Snapshot 控制器 4.2.0 版时，快照可能会失败
+
+如果将 Kubernetes Snapshot-controller （也称为外部快照程序） 4.2.0 与 Kubernetes 1.20 或 1.21 结合使用，则快照最终可能会开始失败。要防止出现这种情况，请使用其他 https://kubernetes-csi.github.io/docs/snapshot-controller.html["支持的版本"^] 使用 Kubernetes 版本 1.20 或 1.21 的外部快照程序，例如 4.2.1 版。
+
+. 运行POST调用、将更新后的kubeconfig文件添加到 `/credentials` 端点并检索分配的 `id` 来自响应正文。
+. 从运行PUT调用 `/clusters` 使用适当的集群ID并设置端点 `credentialID` 到 `id` 上一步中的值。
+
+
+完成这些步骤后、将更新与集群关联的凭据、集群应重新连接并将其状态更新为 `available`。
+
+
+
+== 了解更多信息
+
+* link:../release-notes/known-issues-ads.html["有关 Astra Data Store 预览版和此 Astra 控制中心版本的已知问题"]
+* link:../release-notes/known-limitations.html["已知限制"]
+

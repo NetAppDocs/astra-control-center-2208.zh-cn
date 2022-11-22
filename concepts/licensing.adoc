@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: concepts/licensing.html 
+keywords: license, licensing 
+summary: 了解如何根据许可证状态对 Astra 控制中心执行不同的操作，以及如何使用 Astra 控制中心来影响许可证使用。 
+---
+= 许可
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/concepts/
+
+
+[role="lead"]
+要启用完整的应用程序数据管理功能、需要安装Astra Control Center许可证。如果在没有许可证的情况下部署 Astra 控制中心，则 Web UI 中会显示一个横幅，警告系统功能受限。
+
+您需要一个许可证来保护应用程序和数据。请参见Astra控制中心 link:../concepts/intro.html["features"] 了解详细信息。
+
+购买产品后、您将收到序列号和许可证。您可以从生成NetApp许可证文件(NLF) https://mysupport.netapp.com["NetApp 支持站点"^]。
+
+您还可以使用评估版许可证试用 Astra 控制中心，这样，您可以在自下载此许可证之日起的 90 天内使用 Astra 控制中心。有关详细信息，请参见 link:../get-started/requirements.html["要求"]。
+
+有关ONTAP 存储后端所需许可证的详细信息、请参见 link:../get-started/requirements.html["支持的存储后端"]。
+
+
+NOTE: 您可以在没有许可证的情况下添加集群、添加存储分段以及管理存储后端。
+
+
+
+== 如何计算许可证使用量
+
+在将新集群添加到 Astra 控制中心时，只有在集群上运行的至少一个应用程序由 Astra 控制中心管理之后，该集群才会计入已用许可证。
+
+当您开始管理集群上的应用程序时、该集群的所有CPU单元都会包含在Astra Control Center许可证使用中。
+
+
+
+== 了解更多信息
+
+* link:../use/update-licenses.html["更新现有许可证"]
+
