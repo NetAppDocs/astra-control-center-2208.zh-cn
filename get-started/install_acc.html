@@ -1,0 +1,2859 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head class="at-element-marker">
+  <title>使用标准流程安装 Astra 控制中心</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="使用标准流程安装 Astra 控制中心" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-cn/astra-control-center-2208/get-started/install_acc.html" />
+	<meta property="og:description" content="要在满足某些环境前提条件后安装 Astra 控制中心，您需要下载此软件包并按照所述步骤进行安装。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-cn/astra-control-center-2208/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="要在满足某些环境前提条件后安装 Astra 控制中心，您需要下载此软件包并按照所述步骤进行安装。">
+  <meta name="keywords" content=" astra installation, install astra control center, how to install astra control, deploy, download from netapp support"><!-- Icons -->
+  <link rel="icon" href="/zh-cn/astra-control-center-2208/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/zh-cn/astra-control-center-2208/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/zh-cn/astra-control-center-2208/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-cn/astra-control-center-2208/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/zh-cn/astra-control-center-2208/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-cn/astra-control-center-2208/js/na-search.js'></script><script src='/zh-cn/astra-control-center-2208/js/na-pagenav.js'></script><script src='/zh-cn/astra-control-center-2208/js/na-utility.js'></script>
+  <script src='/zh-cn/astra-control-center-2208/js/clouddocs.js'></script>
+  <script src='/zh-cn/astra-control-center-2208/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/zh-cn/astra-control-center-2208/js/toc.js'></script>
+  <script src='/zh-cn/astra-control-center-2208/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/zh-cn/astra-control-center-2208"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/zh-cn/astra-control-center-2208/js/custom-dropdown.js'></script>
+  <script src='/zh-cn/astra-control-center-2208/js/FileSaver.min.js'></script>
+  <script src='/zh-cn/astra-control-center-2208/js/jszip-utils.min.js'></script>
+  <script src='/zh-cn/astra-control-center-2208/js/jszip.min.js'></script>
+  <script src='/zh-cn/astra-control-center-2208/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div id="version-dropdown-new" class="custom-dropdown" >
+  <div class="custom-dropdown-select unselected" title="Astra 控制中心 22.08">
+    <label>版本</label>
+    <span translate="no" class="notranslate">Astra 控制中心 22.08</span>
+    <img src="/zh-cn/astra-control-center-2208/images/chevron_up.svg" alt="" class="custom-icon chevrondown invisible" />
+    <img src="/zh-cn/astra-control-center-2208/images/chevron_down.svg" alt="" class="custom-icon chevronup" />
+  </div>
+
+  <ul class="custom-dropdown-menu"><li>
+      
+      <a href="https://docs.netapp.com/zh-cn/astra-control-center/get-started/install_acc.html" target="_self">
+        <span translate="no" class="notranslate"><span>Astra 控制中心</span><span class="version"> 22.08</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-cn/astra-control-center-2204/get-started/install_acc.html" target="_self">
+        <span translate="no" class="notranslate"><span>Astra 控制中心</span><span class="version"> 22.04</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-cn/astra-control-center-2112/get-started/install_acc.html" target="_self">
+        <span translate="no" class="notranslate"><span>Astra 控制中心</span><span class="version"> 21.12</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-cn/astra-control-center-2108/get-started/install_acc.html" target="_self">
+        <span translate="no" class="notranslate"><span>Astra 控制中心</span><span class="version"> 21.08</span></span>
+      </a>
+                     
+    </li>
+    
+  </ul>
+</div><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/astra-control-center-2208/issues/new?body=Page%3A%20[使用标准流程安装 Astra 控制中心](https://docs.netapp.com/zh-cn/astra-control-center-2208/get-started/install_acc.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/zh-cn/astra-control-center-2208/images/discuss-sm.svg" alt="" class="github-icon" />请求文档变更</a><a target="_blank" href="https://github.com/NetAppDocs/astra-control-center-2208/blob/main/get-started/install_acc.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-cn/astra-control-center-2208/images/edit-sm.svg" alt="" class="github-icon" />在 GitHub 上编辑</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-cn/astra-control-center-2208/images/article-sm.svg" alt="" class="github-icon" />提供者指南</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">在此页面上</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">产品和解决方案</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">支持和培训</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">云中心</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">社区</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">日志</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">客户案例</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">联系人</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">联系人</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/zh-cn/astra-control-center-2208/search.html"
+          data-type="widget" 
+          data-placeholder="搜索文档"
+          data-no-results-found="未找到与 {query} 匹配的结果。"
+          data-did-you-mean="搜索 {suggestion}。"
+          data-no-results-found-did-you-mean="未找到与 {query} 匹配的结果。您是否要搜索 {suggestion}?"
+          data-results-found="找到 {hitCount} 个结果"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">简体中文</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/zh-cn/astra-control-center-2208/get-started/install_acc.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/astra-control-center-2208/get-started/install_acc.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/astra-control-center-2208/get-started/install_acc.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/astra-control-center-2208/get-started/install_acc.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/astra-control-center-2208/get-started/install_acc.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/fr-fr/astra-control-center-2208/get-started/install_acc.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/astra-control-center-2208/get-started/install_acc.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/zh-cn/astra-control-center-2208/images/collapse.png" alt="折叠导航面板"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>可用的 PDF<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/zh-cn/astra-control-center-2208/pdfs/fullsite-sidebar/Astra_Control_Center_22_08文档.pdf" >
+          <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>此文档站点的 PDF</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/发行说明.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            发行说明
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/已知问题.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            已知问题
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/概念.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            概念
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/入门.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            入门
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/安装概述.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            安装概述
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/安装_Astra_控制中心.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            安装 Astra 控制中心
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/设置_Astra_控制中心.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            设置 Astra 控制中心
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/使用_Astra.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            使用 Astra
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/保护应用程序.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            保护应用程序
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/管理应用程序执行挂钩.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            管理应用程序执行挂钩
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/监控应用程序和集群运行状况.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            监控应用程序和集群运行状况
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/管理您的帐户.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            管理您的帐户
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/使用_REST_API_实现自动化.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            使用 REST API 实现自动化
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-cn/astra-control-center-2208/pdfs/sidebar/知识和支持.pdf" 
+            
+          >
+            <img src="/zh-cn/astra-control-center-2208/images/pdf.png" alt="" width="16" height="16"/>
+            知识和支持
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/zh-cn/astra-control-center-2208/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>收集单独的 PDF 文档<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/zh-cn/astra-family/"><img src="/zh-cn/astra-control-center-2208/images/left_arrow.png" alt=""><pre>所有Astra文档</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Astra Control Center 22.08文档"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/index.html">
+        Astra Control Center 22.08文档
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="发行说明"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="/zh-cn/astra-control-center-2208/release-notes/rn_overview.html">
+        <div class="na-navbar-padding"> 发行说明</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="此版本的 Astra 控制中心中的新增功能"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/release-notes/whats-new.html">
+        此版本的 Astra 控制中心中的新增功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="已知问题"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="/zh-cn/astra-control-center-2208/release-notes/known-issues.html">
+        <div class="na-navbar-padding"> 已知问题</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Astra 数据存储和此 Astra 控制中心版本的已知问题"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/release-notes/known-issues-ads.html">
+        Astra 数据存储和此 Astra 控制中心版本的已知问题
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="已知限制"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/release-notes/known-limitations.html">
+        已知限制
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="概念"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> 概念</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="了解Astra Control"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/concepts/intro.html">
+        了解Astra Control
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="架构和组件"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/concepts/architecture.html">
+        架构和组件
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="数据保护"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/concepts/data-protection.html">
+        数据保护
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="许可"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/concepts/licensing.html">
+        许可
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="了解应用程序管理"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/learn/app-management.html">
+        了解应用程序管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="存储类和 PV 大小"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/concepts/choose-class-and-size.html">
+        存储类和 PV 大小
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="用户角色和命名空间"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/concepts/user-roles-namespaces.html">
+        用户角色和命名空间
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="入门"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> 入门</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Astra 控制中心要求"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/requirements.html">
+        Astra 控制中心要求
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Astra 控制中心快速入门"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/quick-start.html">
+        Astra 控制中心快速入门
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安装概述"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="/zh-cn/astra-control-center-2208/get-started/install_overview.html">
+        <div class="na-navbar-padding"> 安装概述</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安装 Astra 控制中心"
+      data-li-level="3" 
+      class="subfolders  active "
+    ><a href="/zh-cn/astra-control-center-2208/get-started/install_acc.html">
+        <div class="na-navbar-padding"> 安装 Astra 控制中心</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="了解Astra控制中心集群CR选项"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/acc_cluster_cr_options.html">
+        了解Astra控制中心集群CR选项
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="了解POD安全策略限制"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/understand-psp-restrictions.html">
+        了解POD安全策略限制
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="配置外部证书管理器"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/cert-manager-prereqs.html">
+        配置外部证书管理器
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 OpenShift OperatorHub 安装 Astra 控制中心"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/acc_operatorhub_install.html">
+        使用 OpenShift OperatorHub 安装 Astra 控制中心
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 Cloud Volumes ONTAP 存储后端安装 Astra 控制中心"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/install_acc-cvo.html">
+        使用 Cloud Volumes ONTAP 存储后端安装 Astra 控制中心
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="设置 Astra 控制中心"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="/zh-cn/astra-control-center-2208/get-started/setup_overview.html">
+        <div class="na-navbar-padding"> 设置 Astra 控制中心</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="添加集群的前提条件"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/add-cluster-reqs.html">
+        添加集群的前提条件
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="添加自定义 TLS 证书"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/add-custom-tls-certificate.html">
+        添加自定义 TLS 证书
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="创建自定义 POD 安全策略"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/acc-create-podsecuritypolicy.html">
+        创建自定义 POD 安全策略
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="常见问题解答"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/get-started/faq.html">
+        常见问题解答
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 Astra"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> 使用 Astra</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="开始管理应用程序"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-apps.html">
+        开始管理应用程序
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="保护应用程序"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> 保护应用程序</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="保护概述"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/protection-overview.html">
+        保护概述
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="保护应用程序"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/protect-apps.html">
+        保护应用程序
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="还原应用程序"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/restore-apps.html">
+        还原应用程序
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="将应用程序复制到远程系统"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/replicate_snapmirror.html">
+        将应用程序复制到远程系统
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="克隆和迁移应用程序"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/clone-apps.html">
+        克隆和迁移应用程序
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理应用程序执行挂钩"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="/zh-cn/astra-control-center-2208/use/execution-hooks.html">
+        <div class="na-navbar-padding"> 管理应用程序执行挂钩</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="执行钩示例"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/execution-hook-examples.html">
+        执行钩示例
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="监控应用程序和集群运行状况"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> 监控应用程序和集群运行状况</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="信息板摘要"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/view-dashboard.html">
+        信息板摘要
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="集群运行状况和详细信息"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/view-clusters.html">
+        集群运行状况和详细信息
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="应用程序运行状况和详细信息"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/view-apps.html">
+        应用程序运行状况和详细信息
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理您的帐户"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> 管理您的帐户</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理用户"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-users.html">
+        管理用户
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理角色"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-roles.html">
+        管理角色
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理通知"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-notifications.html">
+        管理通知
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理凭据"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-credentials.html">
+        管理凭据
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="监控帐户活动"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/view-account-activity.html">
+        监控帐户活动
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="更新现有许可证"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/update-licenses.html">
+        更新现有许可证
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理存储库连接"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-connections.html">
+        管理存储库连接
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理软件包"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-packages-acc.html">
+        管理软件包
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理存储分段"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-buckets.html">
+        管理存储分段
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理存储后端"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/manage-backend.html">
+        管理存储后端
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Cloud Insights 和Fluentd监控基础架构"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/monitor-protect.html">
+        使用Cloud Insights 和Fluentd监控基础架构
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="取消管理应用程序和集群"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/unmanage.html">
+        取消管理应用程序和集群
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="升级 Astra 控制中心"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/upgrade-acc.html">
+        升级 Astra 控制中心
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="卸载 Astra 控制中心"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/use/uninstall_acc.html">
+        卸载 Astra 控制中心
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 REST API 实现自动化"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> 使用 REST API 实现自动化</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="简介"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/rest-api/api-intro.html">
+        简介
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="知识和支持"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> 知识和支持</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="故障排除"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/support/troubleshooting-acc.html">
+        故障排除
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="获取帮助"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/support/get-help.html">
+        获取帮助
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="早期版本"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/acc-earlier-versions.html">
+        早期版本
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="法律声明"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/zh-cn/astra-control-center-2208/legal-notices.html">
+        法律声明
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/zh-cn/astra-control-center-2208/images/expand.png" alt="展开导航面板"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com/zh-cn/astra-family/">Astra</a>
+        </li>
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/zh-cn/astra-control-center-2208/">Astra&nbsp;Control&nbsp;Center&nbsp;22.08&nbsp;documentation</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 简体中文版经机器翻译而成，仅供参考。如与英语版出现任何冲突，应以英语版为准。 </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">使用标准流程安装 Astra 控制中心</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-11-22 15:56:36 +0000">11/22/2022</time>
+    
+  
+
+<span>提供者
+</span>
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>要安装 Astra Control Center，请从 NetApp 支持站点下载安装包，并执行以下步骤在您的环境中安装 Astra Control Center Operator 和 Astra Control Center。您可以使用此操作步骤在互联网连接或通风环境中安装 Astra 控制中心。</p>
+</div>
+<div class="paragraph">
+<p>对于Red Hat OpenShift环境、您可以使用 <a href="../get-started/acc_operatorhub_install.html">"备用操作步骤"</a> 使用 OpenShift OperatorHub 安装 Astra Control Center 。</p>
+</div>
+<div class="ulist">
+<div class="title">您需要什么？ #8217 ；将需要什么</div>
+<ul>
+<li>
+<p><a href="requirements.html">"开始安装之前，请为 Astra Control Center 部署准备您的环境"</a>。</p>
+</li>
+<li>
+<p>如果您已在环境中配置或希望配置POD安全策略、请熟悉POD安全策略及其对Astra Control Center安装的影响。请参见 <a href="understand-psp-restrictions.html">"了解POD安全策略限制"</a>。</p>
+</li>
+<li>
+<p>确保所有集群操作员均处于运行状况良好且可用。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl get clusteroperators</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>确保所有 API 服务均处于运行状况良好且可用：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl get apiservices</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>确保您计划使用的Astra FQDN可路由到此集群。这意味着您的内部 DNS 服务器中有一个 DNS 条目，或者您正在使用已注册的核心 URL 路由。</p>
+</li>
+<li>
+<p>如果集群中已存在证书管理器、则需要执行某些操作 <a href="../get-started/cert-manager-prereqs.html">"前提条件步骤"</a> 这样、Astra控制中心就不会安装自己的证书管理器。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Astra 控制中心安装过程将执行以下操作：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>将Astra组件安装到中 <code>netapp-acc</code> (或自定义命名的)命名空间。</p>
+</li>
+<li>
+<p>创建默认帐户。</p>
+</li>
+<li>
+<p>建立默认管理用户电子邮件地址和默认一次性密码。系统会为该用户分配首次登录到UI所需的所有者角色。</p>
+</li>
+<li>
+<p>帮助您确定所有 Astra 控制中心 Pod 是否正在运行。</p>
+</li>
+<li>
+<p>安装 Astra UI 。</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/important.svg" alt="重要">
+</td>
+<td class="content">
+(仅限适用场景 Astra数据存储早期访问计划("EAP")版本)如果要使用控制中心管理Astra数据存储并启用VMware工作流、请仅在上部署Astra控制中心 <code>pcloud</code> 命名空间、而不是 <code>netapp-acc</code> 此操作步骤 的步骤中介绍的命名空间或自定义命名空间。
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/important.svg" alt="重要">
+</td>
+<td class="content">
+请勿在整个安装过程中执行以下命令、以避免删除所有Astra控制中心Pod： <code>kubectl delete -f astra_control_center_operator_deploy.yaml</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+如果您使用的是 Red Hat 的 Podman 而不是 Docker 引擎，则可以使用 Podman 命令代替 Docker 命令。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>要安装 Astra 控制中心，请执行以下步骤：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>and unpack the Astra Control Center bundle</p>
+</li>
+<li>
+<p>the NetApp Astra kubectl plugin</p>
+</li>
+<li>
+<p>the images to your local registry</p>
+</li>
+<li>
+<p>up namespace and secret for registries with auth requirements</p>
+</li>
+<li>
+<p>the Astra Control Center operator</p>
+</li>
+<li>
+<p>Astra Control Center</p>
+</li>
+<li>
+<p>Astra Control Center and operator installation</p>
+</li>
+<li>
+<p>system status</p>
+</li>
+<li>
+<p>up ingress for load balancing</p>
+</li>
+<li>
+<p>in to the Astra Control Center UI</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="下载并解包astra-control-center软件包">下载并解包Astra Control Center软件包</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>下载 Astra Control Center 捆绑包 (<code>astra-control-center-[version].tar.gz</code>) <a href="https://mysupport.netapp.com/site/products/all/details/astra-control-center/downloads-tab" target="_blank" rel="noopener">"NetApp 支持站点"</a>。</p>
+</li>
+<li>
+<p>从下载 Astra 控制中心证书和密钥的 zip <a href="https://mysupport.netapp.com/site/products/all/details/astra-control-center/downloads-tab" target="_blank" rel="noopener">"NetApp 支持站点"</a>。</p>
+</li>
+<li>
+<p>（可选）使用以下命令验证捆绑包的签名：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">openssl dgst -sha256 -verify AstraControlCenter-public.pub -signature astra-control-center-[version].tar.gz.sig astra-control-center-[version].tar.gz</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>提取映像：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">tar -vxzf astra-control-center-[version].tar.gz</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="安装netapp-astra-kubectl插件">安装NetApp Astra kubectl插件</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NetApp Astra <code>kubectl</code> 命令行插件可节省执行与部署和升级Astra控制中心相关的常见任务所需的时间。</p>
+</div>
+<div class="paragraph">
+<p>NetApp为不同CPU架构和操作系统的插件提供二进制文件。在执行此任务之前、您需要了解您的CPU和操作系统。在Linux和Mac操作系统上、您可以使用 <code>uname -a</code> 用于收集此信息的命令。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步骤</div>
+<ol class="arabic">
+<li>
+<p>列出可用的NetApp Astra <code>kubectl</code> 插件二进制文件、并记下操作系统和CPU架构所需文件的名称：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">ls kubectl-astra/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>将文件复制到与标准文件相同的位置 <code>kubectl</code> 实用程序。在此示例中、将显示 <code>kubectl</code> 实用程序位于中 <code>/usr/local/bin</code> 目录。替换 <code>&lt;binary-name&gt;</code> 使用所需文件的名称：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">cp kubectl-astra/&lt;binary-name&gt; /usr/local/bin/kubectl-astra</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="将映像添加到本地注册表">将映像添加到本地注册表</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>为容器引擎完成相应的步骤顺序：</p>
+</li>
+</ol>
+</div>
+<div class="exampleblock tabbed-block">
+<div class="content">
+<div class="openblock">
+<div class="title">Docker</div>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>更改为Astra目录：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">cd acc</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>[substep_image_local_registry_push]]将Astra控制中心映像目录中的软件包映像推送到本地注册表。在运行命令之前、请执行以下替换操作：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>将bundle_file替换为Astra Control捆绑包文件的名称(例如、 <code>acc.manifest.yaml</code>）。</p>
+</li>
+<li>
+<p>将my_regRegistry替换为Docker存储库的URL。</p>
+</li>
+<li>
+<p>将my_registry_user替换为用户名。</p>
+</li>
+<li>
+<p>将my_registry_token替换为注册表的授权令牌。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl astra packages push-images -m BUNDLE_FILE -r MY_REGISTRY -u MY_REGISTRY_USER -p MY_REGISTRY_TOKEN</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="openblock">
+<div class="title">Podman</div>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>登录到注册表：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">podman login [your_registry_path]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>运行以下脚本、按照注释中的说明替换&lt;your_registry&gt;：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh"># You need to be at the root of the tarball.
+# You should see these files to confirm correct location:
+#   acc.manifest.yaml
+#   acc/
+
+# Replace &lt;YOUR_REGISTRY&gt; with your own registry (e.g registry.customer.com or registry.customer.com/testing, etc..)
+export REGISTRY=&lt;YOUR_REGISTRY&gt;
+export PACKAGENAME=acc
+export PACKAGEVERSION=22.08.1-26
+export DIRECTORYNAME=acc
+for astraImageFile in $(ls ${DIRECTORYNAME}/images/*.tar) ; do
+  # Load to local cache
+  astraImage=$(podman load --input ${astraImageFile} | sed 's/Loaded image(s): //')
+
+  # Remove path and keep imageName.
+  astraImageNoPath=$(echo ${astraImage} | sed 's:.*/::')
+
+  # Tag with local image repo.
+  podman tag ${astraImage} ${REGISTRY}/netapp/astra/${PACKAGENAME}/${PACKAGEVERSION}/${astraImageNoPath}
+
+  # Push to the local repo.
+  podman push ${REGISTRY}/netapp/astra/${PACKAGENAME}/${PACKAGEVERSION}/${astraImageNoPath}
+done</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="为具有身份验证要求的注册表设置命名空间和密钥">为具有身份验证要求的注册表设置命名空间和密钥</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>导出Astra控制中心主机集群的KUBECONFIG：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">export KUBECONFIG=[file path]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>如果您使用的注册表需要身份验证，则需要执行以下操作：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>创建 <code>netapp-acc-operator</code> 命名空间：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl create ns netapp-acc-operator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>namespace/netapp-acc-operator created</pre>
+</div>
+</div>
+</li>
+<li>
+<p>为创建密钥 <code>netapp-acc-operator</code> 命名空间。添加 Docker 信息并运行以下命令：</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+占位符 <code>your_registry_path</code> 应与您先前上传的映像的位置匹配(例如、 <code>[Registry_URL]/netapp/astra/astracc/22.08.1-26</code>）。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl create secret docker-registry astra-registry-cred -n netapp-acc-operator --docker-server=[your_registry_path] --docker-username=[username] --docker-password=[token]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>secret/astra-registry-cred created</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+如果在生成密钥后删除命名空间、则需要在重新创建命名空间后重新生成命名空间的密钥。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>创建 <code>netapp-acc</code> (或自定义命名)命名空间。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl create ns [netapp-acc or custom namespace]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>namespace/netapp-acc created</pre>
+</div>
+</div>
+</li>
+<li>
+<p>为创建密钥 <code>netapp-acc</code> (或自定义命名)命名空间。添加 Docker 信息并运行以下命令：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl create secret docker-registry astra-registry-cred -n [netapp-acc or custom namespace] --docker-server=[your_registry_path] --docker-username=[username] --docker-password=[token]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>secret/astra-registry-cred created</pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>（可选）如果您希望集群在安装后由 Astra 控制中心自动管理，请确保在您要使用此命令部署到的 Astra 控制中心命名空间中提供 kubeconfig 作为机密：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl create secret generic [acc-kubeconfig-cred or custom secret name] --from-file=&lt;path-to-your-kubeconfig&gt; -n [netapp-acc or custom namespace]</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="安装-astra-控制中心操作员">安装 Astra 控制中心操作员</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>更改目录：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">cd manifests</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>编辑Astra控制中心操作员部署YAML (<code>astra_control_center_operator_deploy.yaml</code>)以引用您的本地注册表和密钥。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">vim astra_control_center_operator_deploy.yaml</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+以下步骤将提供一个标注的YAML示例。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>如果您使用的注册表需要身份验证、请替换的默认行 <code>imagePullSecrets: []</code> 使用以下命令：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">imagePullSecrets:
+- name: &lt;astra-registry-cred&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>更改 <code>[your_registry_path]</code> 。 <code>kube-rbac-proxy</code> 将映像推送到注册表路径中 ,上一步。</p>
+</li>
+<li>
+<p>更改 <code>[your_registry_path]</code> 。 <code>acc-operator-controller-manager</code> 将映像推送到注册表路径中 ,上一步。</p>
+</li>
+<li>
+<p>（对于使用 Astra 数据存储预览版的安装）请参见有关的此已知问题描述 <a href="https://docs.netapp.com/us-en/astra-data-store-2112/release-notes/known-issues.html#mongodb-deployment-with-default-liveness-probe-value-fails-with-pods-in-crash-loop" target="_blank" rel="noopener">"存储类配置程序以及需要对 YAML 进行的其他更改"</a>。</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    control-plane: controller-manager
+  name: acc-operator-controller-manager
+  namespace: netapp-acc-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - args:
+        - --secure-listen-address=0.0.0.0:8443
+        - --upstream=http://127.0.0.1:8080/
+        - --logtostderr=true
+        - --v=10
+        <strong>image: [your_registry_path]/kube-rbac-proxy:v4.8.0</strong>
+        name: kube-rbac-proxy
+        ports:
+        - containerPort: 8443
+          name: https
+      - args:
+        - --health-probe-bind-address=:8081
+        - --metrics-bind-address=127.0.0.1:8080
+        - --leader-elect
+        command:
+        - /manager
+        env:
+        - name: ACCOP_LOG_LEVEL
+          value: "2"
+        <strong>image: [your_registry_path]/acc-operator:[version x.y.z]</strong>
+        imagePullPolicy: IfNotPresent
+      <strong>imagePullSecrets: []</strong></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>安装 Astra 控制中心操作员：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl apply -f astra_control_center_operator_deploy.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>namespace/netapp-acc-operator created
+customresourcedefinition.apiextensions.k8s.io/astracontrolcenters.astra.netapp.io created
+role.rbac.authorization.k8s.io/acc-operator-leader-election-role created
+clusterrole.rbac.authorization.k8s.io/acc-operator-manager-role created
+clusterrole.rbac.authorization.k8s.io/acc-operator-metrics-reader created
+clusterrole.rbac.authorization.k8s.io/acc-operator-proxy-role created
+rolebinding.rbac.authorization.k8s.io/acc-operator-leader-election-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/acc-operator-manager-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/acc-operator-proxy-rolebinding created
+configmap/acc-operator-manager-config created
+service/acc-operator-controller-manager-metrics-service created
+deployment.apps/acc-operator-controller-manager created</pre>
+</div>
+</div>
+</li>
+<li>
+<p>验证Pod是否正在运行：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl get pods -n netapp-acc-operator</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="配置-astra-控制中心">配置 Astra 控制中心</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>编辑Astra Control Center自定义资源(CR)文件 (<code>astra_control_center_min.yaml</code>)进行帐户、AutoSupport 、注册表和其他必要配置：</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+<code>astra_control_center_min.yaml</code> 是默认CR、适用于大多数安装。熟悉所有内容 <a href="../get-started/acc_cluster_cr_options.html">"CR选项及其潜在值"</a> 以确保为您的环境正确部署Astra控制中心。如果您的环境需要其他自定义设置、您可以使用 <code>astra_control_center.yaml</code> 作为替代CR。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">vim astra_control_center_min.yaml</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/important.svg" alt="重要">
+</td>
+<td class="content">
+如果您使用的注册表不需要授权、则必须删除  <code>secret</code> 行内 <code>imageRegistry</code> 否则安装将失败。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>更改 <code>[your_registry_path]</code> 到上一步中将映像推送到的注册表路径。</p>
+</li>
+<li>
+<p>更改 <code>accountName</code> 字符串、表示要与帐户关联的名称。</p>
+</li>
+<li>
+<p>更改 <code>astraAddress</code> 指向要在浏览器中用于访问Astra的FQDN的字符串。请勿使用 <code>http://</code> 或 <code>https://</code> 地址中。复制此 FQDN 以在中使用  in to the Astra Control Center UI,后续步骤。</p>
+</li>
+<li>
+<p>更改 <code>email</code> 字符串到默认的初始管理员地址。复制此电子邮件地址以在中使用  in to the Astra Control Center UI,后续步骤。</p>
+</li>
+<li>
+<p>更改 <code>enrolled</code> 用于将AutoSupport 连接到 <code>false</code> 对于不具有Internet连接或保留的站点 <code>true</code> 对于已连接站点。</p>
+</li>
+<li>
+<p>如果使用外部证书管理器、请将以下行添加到 <code>spec</code>：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">spec:
+  crds:
+    externalCertManager: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>(可选)添加名字 <code>firstName</code> 和姓氏 <code>lastName</code> 与帐户关联的用户的。您可以在用户界面中立即或稍后执行此步骤。</p>
+</li>
+<li>
+<p>(可选)更改 <code>storageClass</code> 如果您的安装需要、则为另一个Trident storageClass资源指定值。</p>
+</li>
+<li>
+<p>（可选）如果您希望集群在安装后由 Astra 控制中心自动管理，并且您已经这样了 ,已为此集群创建包含 kubeconfig 的密钥下、通过在此YAML文件中添加一个名为的新字段来提供密钥名称 <code>astraKubeConfigSecret: "acc-kubeconfig-cred or custom secret name"</code></p>
+</li>
+<li>
+<p>完成以下步骤之一：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>* 其他传入控制器（ ingressType ： Generic ） * ：这是 Astra 控制中心的默认操作。部署 Astra 控制中心后，您需要配置入口控制器，以便使用 URL 公开 Astra 控制中心。</p>
+<div class="paragraph">
+<p>默认的Astra Control Center安装用于设置其网关 (<code>service/traefik</code>)的类型 <code>ClusterIP</code>。此默认安装要求您另外设置一个 Kubernetes IngressController/Ingress ，以便向其路由流量。如果要使用入口，请参见 <a href="../get-started/install_acc.html#set-up-ingress-for-load-balancing">"设置传入以进行负载平衡"</a>。</p>
+</div>
+</li>
+<li>
+<p><strong>服务负载平衡器(ingressType：AccTraefik)</strong>：如果您不想安装IngressController或创建Ingress资源、请设置 <code>ingressType</code> to <code>AccTraefik</code>。</p>
+<div class="paragraph">
+<p>这将部署Astra控制中心 <code>traefik</code> 网关作为Kubernetes loadbalancer类型的服务。</p>
+</div>
+<div class="paragraph">
+<p>Astra控制中心使用类型为"loadbalancer"的服务 (<code>svc/traefik</code> )、并要求为其分配可访问的外部IP地址。如果您的环境允许使用负载平衡器，但您尚未配置一个平衡器，则可以使用 MetalLB 或其他外部服务负载平衡器为该服务分配外部 IP 地址。在内部 DNS 服务器配置中，您应将为 Astra 控制中心选择的 DNS 名称指向负载平衡的 IP 地址。</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+有关 "loadbalancer" 服务类型和入口的详细信息，请参见 <a href="../get-started/requirements.html">"要求"</a>。
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: astra.netapp.io/v1
+kind: AstraControlCenter
+metadata:
+  name: astra
+spec:
+  <strong>accountName: "Example"</strong>
+  astraVersion: "ASTRA_VERSION"
+  <strong>astraAddress: "astra.example.com"</strong>
+  <strong>astraKubeConfigSecret: "acc-kubeconfig-cred or custom secret name"</strong>
+  <strong>ingressType: "Generic"</strong>
+  autoSupport:
+    <strong>enrolled: true</strong>
+  <strong>email: "[admin@example.com]"</strong>
+  <strong>firstName: "SRE"</strong>
+  <strong>lastName: "Admin"</strong>
+  imageRegistry:
+    <strong>name: "[your_registry_path]"</strong>
+    <strong>secret: "astra-registry-cred"</strong>
+  <strong>storageClass: "ontap-gold"</strong></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="完成-astra-控制中心和操作员安装">完成 Astra 控制中心和操作员安装</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>如果您在上一步中尚未执行此操作、请创建 <code>netapp-acc</code> (或自定义)命名空间：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl create ns [netapp-acc or custom namespace]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>namespace/netapp-acc created</pre>
+</div>
+</div>
+</li>
+<li>
+<p>在中安装Astra控制中心 <code>netapp-acc</code> (或自定义)命名空间：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl apply -f astra_control_center_min.yaml -n [netapp-acc or custom namespace]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>astracontrolcenter.astra.netapp.io/astra created</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="验证系统状态">验证系统状态</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+如果您更喜欢使用 OpenShift ，则可以使用同等的 oc 命令执行验证步骤。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>验证是否已成功安装所有系统组件。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl get pods -n [netapp-acc or custom namespace]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>每个POD的状态应为 <code>Running</code>。部署系统 Pod 可能需要几分钟的时间。</p>
+</div>
+<div class="exampleblock">
+<div class="title">示例 1. 响应示例</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre>NAME                                     READY  STATUS   RESTARTS AGE
+acc-helm-repo-6b44d68d94-d8m55           1/1    Running  0        13m
+activity-78f99ddf8-hltct                 1/1    Running  0        10m
+api-token-authentication-457nl           1/1    Running  0        9m28s
+api-token-authentication-dgwsz           1/1    Running  0        9m28s
+api-token-authentication-hmqqc           1/1    Running  0        9m28s
+asup-75fd554dc6-m6qzh                    1/1    Running  0        9m38s
+authentication-6779b4c85d-92gds          1/1    Running  0        8m11s
+bucketservice-7cc767f8f8-lqwr8           1/1    Running  0        9m31s
+certificates-549fd5d6cb-5kmd6            1/1    Running  0        9m56s
+certificates-549fd5d6cb-bkjh9            1/1    Running  0        9m56s
+cloud-extension-7bcb7948b-hn8h2          1/1    Running  0        10m
+cloud-insights-service-56ccf86647-fgg69  1/1    Running  0        9m46s
+composite-compute-677685b9bb-7vgsf       1/1    Running  0        10m
+composite-volume-657d6c5585-dnq79        1/1    Running  0        9m49s
+credentials-755fd867c8-vrlmt             1/1    Running  0        11m
+entitlement-86495cdf5b-nwhh2             1/1    Running  2        10m
+features-5684fb8b56-8d6s8                1/1    Running  0        10m
+fluent-bit-ds-rhx7v                      1/1    Running  0        7m48s
+fluent-bit-ds-rjms4                      1/1    Running  0        7m48s
+fluent-bit-ds-zf5ph                      1/1    Running  0        7m48s
+graphql-server-66d895f544-w6hjd          1/1    Running  0        3m29s
+identity-744df448d5-rlcmm                1/1    Running  0        10m
+influxdb2-0                              1/1    Running  0        13m
+keycloak-operator-75c965cc54-z7csw       1/1    Running  0        8m16s
+krakend-798d6df96f-9z2sk                 1/1    Running  0        3m26s
+license-5fb7d75765-f8mjg                 1/1    Running  0        9m50s
+login-ui-7d5b7df85d-l2s7s                1/1    Running  0        3m20s
+loki-0                                   1/1    Running  0        13m
+metrics-facade-599b9d7fcc-gtmgl          1/1    Running  0        9m40s
+monitoring-operator-67cc74f844-cdplp     2/2    Running  0        8m11s
+nats-0                                   1/1    Running  0        13m
+nats-1                                   1/1    Running  0        13m
+nats-2                                   1/1    Running  0        12m
+nautilus-769f5b74cd-k5jxm                1/1    Running  0        9m42s
+nautilus-769f5b74cd-kd9gd                1/1    Running  0        8m59s
+openapi-84f6ccd8ff-76kvp                 1/1    Running  0        9m34s
+packages-6f59fc67dc-4g2f5                1/1    Running  0        9m52s
+polaris-consul-consul-server-0           1/1    Running  0        13m
+polaris-consul-consul-server-1           1/1    Running  0        13m
+polaris-consul-consul-server-2           1/1    Running  0        13m
+polaris-keycloak-0                       1/1    Running  0        8m7s
+polaris-keycloak-1                       1/1    Running  0        5m49s
+polaris-keycloak-2                       1/1    Running  0        5m15s
+polaris-keycloak-db-0                    1/1    Running  0        8m6s
+polaris-keycloak-db-1                    1/1    Running  0        5m49s
+polaris-keycloak-db-2                    1/1    Running  0        4m57s
+polaris-mongodb-0                        2/2    Running  0        13m
+polaris-mongodb-1                        2/2    Running  0        12m
+polaris-mongodb-2                        2/2    Running  0        12m
+polaris-ui-565f56bf7b-zwr8b              1/1    Running  0        3m19s
+polaris-vault-0                          1/1    Running  0        13m
+polaris-vault-1                          1/1    Running  0        13m
+polaris-vault-2                          1/1    Running  0        13m
+public-metrics-6d86d66444-2wbzl          1/1    Running  0        9m30s
+storage-backend-metrics-77c5d98dcd-dbhg5 1/1    Running  0        9m44s
+storage-provider-78c885f57c-6zcv4        1/1    Running  0        9m36s
+telegraf-ds-2l2m9                        1/1    Running  0        7m48s
+telegraf-ds-qfzgh                        1/1    Running  0        7m48s
+telegraf-ds-shrms                        1/1    Running  0        7m48s
+telegraf-rs-bjpkt                        1/1    Running  0        7m48s
+telemetry-service-6684696c64-qzfdf       1/1    Running  0        10m
+tenancy-6596b6c54d-vmpsm                 1/1    Running  0        10m
+traefik-7489dc59f9-6mnst                 1/1    Running  0        3m19s
+traefik-7489dc59f9-xrkgg                 1/1    Running  0        3m4s
+trident-svc-6c8dc458f5-jswcl             1/1    Running  0        10m
+vault-controller-6b954f9b76-gz9nm        1/1    Running  0        11m</pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>(可选)为确保安装完成、您可以观看 <code>acc-operator</code> 使用以下命令记录。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl logs deploy/acc-operator-controller-manager -n netapp-acc-operator -c manager -f</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+<code>accHost</code> 集群注册是最后一项操作、如果失败、发生原因 部署不会失败。如果日志中指示集群注册失败，您可以通过添加集群工作流再次尝试注册 <a href="../get-started/setup_overview.html#add-cluster">"在 UI 中"</a> 或 API 。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>在所有Pod运行时、验证安装是否成功 (<code>READY</code> 为 <code>True</code>)并获取登录到Astra控制中心时要使用的一次性密码：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl get AstraControlCenter -n netapp-acc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME    UUID                                      VERSION     ADDRESS         READY
+astra   ACC-9aa5fdae-4214-4cb7-9976-5d8b4c0ce27f  22.08.1-26  10.111.111.111  True</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/important.svg" alt="重要">
+</td>
+<td class="content">
+复制UUID值。密码为 <code>ACC-</code> 后跟UUID值 (<code>ACC-[UUID]</code> 或者、在此示例中、 <code>ACC-9aa5fdae-4214-4cb7-9976-5d8b4c0ce27f</code>）。
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="设置传入以进行负载平衡">设置传入以进行负载平衡</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以设置 Kubernetes 入口控制器，用于管理对服务的外部访问，例如集群中的负载平衡。</p>
+</div>
+<div class="paragraph">
+<p>此操作步骤 介绍了如何设置入口控制器 (<code>ingressType:Generic</code>）。这是 Astra 控制中心的默认操作。部署 Astra 控制中心后，您需要配置入口控制器，以便使用 URL 公开 Astra 控制中心。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+如果您不想设置入口控制器、可以设置 <code>ingressType:AccTraefik)</code>。Astra控制中心使用类型为"loadbalancer"的服务 (<code>svc/traefik</code> )、并要求为其分配可访问的外部IP地址。如果您的环境允许使用负载平衡器，但您尚未配置一个平衡器，则可以使用 MetalLB 或其他外部服务负载平衡器为该服务分配外部 IP 地址。在内部 DNS 服务器配置中，您应将为 Astra 控制中心选择的 DNS 名称指向负载平衡的 IP 地址。有关 "loadbalancer" 服务类型和入口的详细信息，请参见 <a href="../get-started/requirements.html">"要求"</a>。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>根据您使用的入口控制器类型，步骤会有所不同：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Istio入口</p>
+</li>
+<li>
+<p>nginx 入口控制器</p>
+</li>
+<li>
+<p>OpenShift 入口控制器</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">您需要什么？ #8217 ；将需要什么</div>
+<ul>
+<li>
+<p>所需 <a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">"入口控制器"</a> 应已部署。</p>
+</li>
+<li>
+<p>。 <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class">"入口类"</a> 应已创建与入口控制器对应的。</p>
+</li>
+<li>
+<p>您使用的是介于 v1.19 和 v1.22 之间的 Kubernetes 版本，包括 v1.19 和 v1.22 。</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Istio入口的步骤</div>
+<ol class="arabic">
+<li>
+<p>配置Istio入口。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+此操作步骤 假定使用"默认"配置文件部署Istio。 
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>为传入网关收集或创建所需的证书和专用密钥文件。</p>
+<div class="paragraph">
+<p>您可以使用CA签名或自签名证书。公用名必须为Astra地址(FQDN)。</p>
+</div>
+<div class="paragraph">
+<p>命令示例： </p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">openssl req -x509 -nodes -days 365 -newkey rsa:2048 
+-keyout tls.key -out tls.crt</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>创建密钥 <code>tls secret name</code> 类型 <code>kubernetes.io/tls</code> 中的TLS专用密钥和证书 <code>istio-system namespace</code> 如TLS机密中所述。</p>
+<div class="paragraph">
+<p>命令示例： </p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl create secret tls [tls secret name] 
+--key="tls.key"
+--cert="tls.crt" -n istio-system</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+密钥名称应与匹配 <code>spec.tls.secretName</code> 在中提供 <code>istio-ingress.yaml</code> 文件
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>在中部署传入资源 <code>netapp-acc</code> (或自定义命名)命名空间使用v1beta1 (在Kubernetes版本低于或1.22的情况下已弃用)或v1资源类型作为已弃用或新模式：</p>
+<div class="paragraph">
+<p>输出：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: networking.k8s.io/v1beta1
+kind: IngressClass
+metadata:
+  name: istio
+spec:
+  controller: istio.io/ingress-controller
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: istio-system
+spec:
+  ingressClassName: istio
+  tls:
+  - hosts:
+    - &lt;ACC addess&gt;
+    secretName: [tls secret name]
+  rules:
+  - host: [ACC addess]
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          serviceName: traefik
+          servicePort: 80</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>对于v1新模式、请遵循以下示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl apply -f istio-Ingress.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>输出：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: istio
+spec:
+  controller: istio.io/ingress-controller
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: istio-system
+spec:
+  ingressClassName: istio
+  tls:
+  - hosts:
+    - &lt;ACC addess&gt;
+    secretName: [tls secret name]
+  rules:
+  - host: [ACC addess]
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: traefik
+            port:
+              number: 80</pre>
+</div>
+</div>
+</li>
+<li>
+<p>照常部署Astra控制中心。</p>
+</li>
+<li>
+<p>检查入口状态：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl get ingress -n netapp-acc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>响应：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME    CLASS HOSTS             ADDRESS         PORTS   AGE
+ingress istio astra.example.com 172.16.103.248  80, 443 1h</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">nginx 入口控制器的步骤</div>
+<ol class="arabic">
+<li>
+<p>创建类型的密钥[<code>kubernetes.io/tls</code>]中的TLS专用密钥和证书 <code>netapp-acc</code> (或自定义命名的)命名空间、如中所述 <a href="https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets">"TLS 密钥"</a>。</p>
+</li>
+<li>
+<p>在中部署传入资源 <code>netapp-acc</code> (或自定义命名的)命名空间 <code>v1beta1</code> (在低于或1.22的Kubernetes版本中已弃用)或 <code>v1</code> 已弃用或新模式的资源类型：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>对于A <code>v1beta1</code> 已弃用模式、请按照以下示例进行操作：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: extensions/v1beta1
+Kind: IngressClass
+metadata:
+  name: ingress-acc
+  namespace: [netapp-acc or custom namespace]
+  annotations:
+    kubernetes.io/ingress.class: [class name for nginx controller]
+spec:
+  tls:
+  - hosts:
+    - &lt;ACC address&gt;
+    secretName: [tls secret name]
+  rules:
+  - host: [ACC address]
+    http:
+      paths:
+      - backend:
+        serviceName: traefik
+        servicePort: 80
+        pathType: ImplementationSpecific</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>。 <code>v1</code> 新架构、请按照以下示例进行操作：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: netapp-acc-ingress
+  namespace: [netapp-acc or custom namespace]
+spec:
+  ingressClassName: [class name for nginx controller]
+  tls:
+  - hosts:
+    - &lt;ACC address&gt;
+    secretName: [tls secret name]
+  rules:
+  - host: &lt;ACC addess&gt;
+    http:
+      paths:
+        - path:
+          backend:
+            service:
+              name: traefik
+              port:
+                number: 80
+          pathType: ImplementationSpecific</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">OpenShift 入口控制器的步骤</div>
+<ol class="arabic">
+<li>
+<p>获取证书并获取密钥，证书和 CA 文件，以供 OpenShift 路由使用。</p>
+</li>
+<li>
+<p>创建 OpenShift 路由：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">oc create route edge --service=traefik
+--port=web -n [netapp-acc or custom namespace]
+--insecure-policy=Redirect --hostname=&lt;ACC address&gt;
+--cert=cert.pem --key=key.pem</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="登录到-astra-控制中心-ui">登录到 Astra 控制中心 UI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>安装 Astra 控制中心后，您将更改默认管理员的密码并登录到 Astra 控制中心 UI 信息板。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步骤</div>
+<ol class="arabic">
+<li>
+<p>在浏览器中、输入在中使用的FQDN <code>astraAddress</code> 在中  <code>astra_control_center_min.yaml</code> CR时间  Astra Control Center,您安装了 Astra 控制中心。</p>
+</li>
+<li>
+<p>出现提示时接受自签名证书。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+您可以在登录后创建自定义证书。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>在Astra Control Center登录页面上、输入您用于的值 <code>email</code> 在中 <code>astra_control_center_min.yaml</code> CR时间  Astra Control Center,您安装了 Astra 控制中心、后跟一次性密码 (<code>ACC-[UUID]</code>）。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+如果您输入的密码三次不正确，管理员帐户将锁定 15 分钟。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>选择 * 登录 * 。</p>
+</li>
+<li>
+<p>根据提示更改密码。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/astra-control-center-2208/images/note.svg" alt="注">
+</td>
+<td class="content">
+如果您是首次登录，但忘记了密码，并且尚未创建任何其他管理用户帐户，请联系 NetApp 支持部门以获得密码恢复帮助。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>（可选）删除现有自签名 TLS 证书并将其替换为 <a href="../get-started/add-custom-tls-certificate.html">"由证书颁发机构（ CA ）签名的自定义 TLS 证书"</a>。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="对安装进行故障排除">对安装进行故障排除</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果有任何服务位于中 <code>Error</code> 状态、您可以检查日志。查找 400 到 500 范围内的 API 响应代码。这些信息表示发生故障的位置。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步骤</div>
+<ol class="arabic">
+<li>
+<p>要检查 Astra 控制中心操作员日志，请输入以下内容：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sh" data-lang="sh">kubectl logs --follow -n netapp-acc-operator $(kubectl get pods -n netapp-acc-operator -o name) -c manager</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="下一步行动">下一步行动</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>执行以完成部署 <a href="setup_overview.html">"设置任务"</a>。</p>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">条款和条件</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">隐私政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie 政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie 设置</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">发送有关此页面的反馈</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-cn/astra-control-center-2208/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-cn/astra-control-center-2208/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-cn/astra-control-center-2208/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-cn/astra-control-center-2208/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-cn/astra-control-center-2208/js/www-ntap.js'></script>
+    <script src='/zh-cn/astra-control-center-2208/js/tabbed-blocks.js'></script>
+    <script src='/zh-cn/astra-control-center-2208/js/sidebar.js'></script>
+  </body></html>
