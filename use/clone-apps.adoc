@@ -16,6 +16,7 @@ summary: 克隆现有应用程序以在同一个 Kubernetes 集群或另一个�
 
 如果您需要将应用程序和存储从一个 Kubernetes 集群移动到另一个集群，则克隆可以助您一臂之力。例如，您可能希望通过 CI/CD 管道以及在 Kubernetes 命名空间之间移动工作负载。您可以使用 Astra UI 或 https://docs.netapp.com/us-en/astra-automation/index.html["Astra Control API"^] 克隆和迁移应用程序。
 
+.您需要的内容
 要将应用程序克隆到其他集群，您需要一个默认存储分段。添加第一个存储分段时，它将成为默认存储分段。
 
 .关于此任务
@@ -58,6 +59,7 @@ summary: 克隆现有应用程序以在同一个 Kubernetes 集群或另一个�
 . * 克隆摘要 * ：查看有关克隆的详细信息并选择 * 克隆 * 。
 
 
+.结果
 Astra 控制中心会根据您提供的信息克隆该应用程序。如果新应用程序克隆位于中、则克隆操作将成功 `Available` 状态。
 
 

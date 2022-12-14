@@ -14,10 +14,10 @@ summary: 安装 Astra 控制中心，登录到 UI 并更改密码后，您将需
 Astra 控制中心支持并监控 ONTAP 和 Astra 数据存储作为存储后端。安装 Astra 控制中心，登录到 UI 并更改密码后，您将需要设置许可证，添加集群，管理存储以及添加存储分段。
 
 .任务
-*  a license for Astra Control Center
-*  cluster
-*  a storage backend
-*  a bucket
+* <<添加 Astra 控制中心的许可证>>
+* <<添加集群>>
+* <<添加存储后端>>
+* <<添加存储分段>>
 
 
 
@@ -38,6 +38,7 @@ Astra 控制中心许可证使用 Kubernetes CPU 单元测量 CPU 资源。此�
 
 NOTE: 如果您的安装增长到超过许可的 CPU 单元数，则 Astra 控制中心将阻止您管理新应用程序。超过容量时，将显示警报。
 
+.您需要的内容
 从下载 Astra 控制中心时 https://mysupport.netapp.com/site/products/all/details/astra-control-center/downloads-tab["NetApp 支持站点"^]，您还下载了 NetApp 许可证文件（ NLF ）。确保您有权访问此许可证文件。
 
 .步骤
@@ -67,11 +68,11 @@ TIP: 我们建议，在将其他集群添加到 Astra 控制中心进行管理�
 当Astra Control管理集群时、它会跟踪集群的默认存储类。如果您使用更改存储类 `kubectl` 命令、Astra Control将还原更改。要更改由Astra Control管理的集群中的默认存储类、请使用以下方法之一：
 
 * 使用 Astra Control API `PUT /managedClusters` 端点、并为分配一个不同的默认存储类 `DefaultStorageClass` 参数。
-* 使用Astra Control Web UI分配其他默认存储类。请参见  the default storage class。
+* 使用Astra Control Web UI分配其他默认存储类。请参见 <<更改默认存储类>>。
 
 
 ====
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 在添加集群之前，请查看并执行必要的操作 link:add-cluster-reqs.html["前提条件任务"^]。
 
 
@@ -102,6 +103,7 @@ image:cluster-storage.png["显示要用于集群的存储类。"]
 . 查看相关信息，如果一切正常，请选择 * 添加集群 * 。
 
 
+.结果
 集群将进入 * 正在发现 * 状态，然后更改为 * 正在运行 * 。您已成功添加 Kubernetes 集群，现在正在 Astra 控制中心中对其进行管理。
 
 
@@ -115,7 +117,7 @@ IMPORTANT: 添加要在 Astra 控制中心中管理的集群后，部署监控�
 
 通过将 Astra Control 中的存储集群作为存储后端进行管理，您可以在永久性卷（ PV ）和存储后端之间建立链接，并获得其他存储指标。
 
-.现有Astra Data Store部署需要什么
+.现有Astra Data Store部署所需的资源
 * 您已添加Kubernetes应用程序集群和底层计算集群。
 +
 
@@ -123,15 +125,15 @@ IMPORTANT: 为Astra Data Store添加Kubernetes应用程序集群并由Astra Cont
 
 
 
-.新的Astra Data Store部署需要什么
+.新的Astra Data Store部署所需的资源
 * 您已拥有 link:../use/manage-packages-acc.html["已上传要部署的安装包版本"] 到Astra Control可访问的位置。
 * 您已添加要用于部署的Kubernetes集群。
-* 您已上传  a license for Astra Control Center,Astra Data Store许可证 部署到可供Astra Control访问的位置。
+* 您已上传 <<添加 Astra 控制中心的许可证,Astra Data Store许可证>> 部署到可供Astra Control访问的位置。
 
 
 .选项
-*  storage resources
-*  an existing storage backend
+* <<部署存储资源>>
+* <<使用现有存储后端>>
 
 
 
@@ -205,6 +207,7 @@ NOTE: 为每个节点的密钥至少创建三个唯一标签。例如、如果�
 . 查看配置并选择*部署*以开始安装。
 
 
+.结果
 成功安装后、后端将显示在中 `available` 后端列表中的状态以及活动性能信息。
 
 
@@ -254,6 +257,7 @@ NOTE: 您在此处输入凭据的用户必须具有 `ontapi` 在ONTAP 集群上�
 
 
 
+.结果
 后端显示在中 `available` 包含摘要信息的列表中的状态。
 
 
@@ -308,7 +312,7 @@ TIP: 存储分段名称和问题描述显示为备份位置，您可以稍后在
 
 NOTE: 创建的第一个存储分段不会显示此选项。
 
-.. 通过添加继续  S3 access credentials,凭据信息。
+.. 通过添加继续 <<添加 S3 访问凭据,凭据信息>>。
 
 
 

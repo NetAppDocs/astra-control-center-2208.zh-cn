@@ -15,7 +15,7 @@ summary: 如果您使用的是 Red Hat OpenShift ，则可以使用操作员安�
 
 完成此操作步骤后，您必须返回到安装操作步骤以完成 link:../get-started/install_acc.html#verify-system-status["剩余步骤"] 以验证安装是否成功并登录。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * link:requirements.html["开始安装之前，请为 Astra Control Center 部署准备您的环境"]。
 * 在OpenShift集群中、确保所有集群操作员均处于运行状况良好的状态 (`available` 为 `true`）：
 +
@@ -35,12 +35,12 @@ oc get apiservices
 
 
 .步骤
-*  and unpack the Astra Control Center bundle
-*  the NetApp Astra kubectl plugin
-*  the images to your local registry
-*  the operator install page
-*  the operator
-*  Astra Control Center
+* <<下载并解包Astra Control Center软件包>>
+* <<安装NetApp Astra kubectl插件>>
+* <<将映像添加到本地注册表>>
+* <<找到操作员安装页面>>
+* <<安装操作员>>
+* <<安装 Astra 控制中心>>
 
 
 
@@ -69,6 +69,7 @@ tar -vxzf astra-control-center-[version].tar.gz
 
 NetApp Astra `kubectl` 命令行插件可节省执行与部署和升级Astra控制中心相关的常见任务所需的时间。
 
+.您需要的内容
 NetApp为不同CPU架构和操作系统的插件提供二进制文件。在执行此任务之前、您需要了解您的CPU和操作系统。在Linux和Mac操作系统上、您可以使用 `uname -a` 用于收集此信息的命令。
 
 .步骤

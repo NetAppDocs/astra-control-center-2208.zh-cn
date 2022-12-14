@@ -13,16 +13,16 @@ summary: 通过验证对 Kubernetes 集群，应用程序和 Web 浏览器的支
 
 首先验证操作环境，应用程序集群，应用程序，许可证和 Web 浏览器的就绪情况。
 
-*  environment requirements
-*  storage backends
-*  cluster requirements
-*  management requirements
-*  prerequisites
-*  to the internet
-* 
-*  for on-premises Kubernetes clusters
-*  requirements
-*  web browsers
+* <<操作环境要求>>
+* <<支持的存储后端>>
+* <<应用程序集群要求>>
+* <<应用程序管理要求>>
+* <<复制前提条件>>
+* <<访问 Internet>>
+* <<许可证>>
+* <<内部 Kubernetes 集群的传入>>
+* <<网络要求>>
+* <<支持的 Web 浏览器>>
 
 
 

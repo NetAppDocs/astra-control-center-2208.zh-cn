@@ -28,6 +28,7 @@ https://docs.netapp.com/us-en/astra-data-store/release-notes/known-issues.html["
 如果您将包含Astra数据存储的集群添加到Astra控制中心集群、则默认情况下、astrads-system应用程序将作为隐藏应用程序进行管理。要取消管理集群、必须先取消管理astrads-system应用程序。您不能使用Astra控制中心UI取消管理此类应用程序。请改用Astra Control API请求手动删除此应用：
 
 .详细信息
+[%collapsible]
 ====
 .步骤
 . 使用此API获取受管集群的ID：

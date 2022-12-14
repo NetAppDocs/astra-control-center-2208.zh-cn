@@ -13,7 +13,7 @@ summary: 您可以将软件包上传并安装到Astra控制中心。
 
 NetApp 通过可从 NetApp 支持站点下载的软件包为 Astra Control Center 提供更多功能。连接Docker和项目存储库后、您可以上传并导入软件包、以便将此功能添加到Astra控制中心。您可以使用命令行界面或Astra控制中心Web UI管理软件包。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 安装了 Astra 控制中心的 Kubernetes 集群
 * 一个连接的Docker映像存储库、用于存放软件包映像。有关详细信息，请参见 link:manage-connections.html["管理存储库连接"]。
 * 一个连接的项目存储库、用于存放软件包二进制文件和项目。有关详细信息，请参见 link:manage-connections.html["管理存储库连接"]。
@@ -71,6 +71,7 @@ kubectl astra packages copy-artifacts -m BUNDLE_FILE -n NETWORK_LOCATION
 . 选择 * 添加 * 。
 
 
+.结果
 如果捆绑包文件有效、并且软件包映像和项目位于已连接的存储库中、则软件包将添加到Astra控制中心。当*状态*列中的状态更改为*可用*时、您可以使用软件包。您可以将鼠标悬停在软件包的状态上以获取详细信息。
 
 
@@ -104,6 +105,7 @@ kubectl astra packages import -m BUNDLE_FILE -u SERVER -a ACCOUNT_ID -k TOKEN
 
 
 
+.结果
 如果捆绑包文件有效、并且软件包映像和项目位于已连接的存储库中、则软件包将添加到Astra控制中心。
 
 
@@ -125,6 +127,7 @@ NOTE: 如果在存储库中未找到某个软件包的一个或多个映像或�
 . 选择 * 删除 * 。
 
 
+.结果
 该软件包将从Astra控制中心删除、但该软件包的映像和项目仍保留在存储库中。
 
 [discrete]

@@ -13,7 +13,7 @@ summary: 要升级 Astra 控制中心，您需要下载此捆绑包并按照所�
 
 要升级 Astra Control Center，请从 NetApp 支持站点下载安装包，然后按照以下说明升级环境中的 Astra Control Center 组件。您可以使用此操作步骤在互联网连接或通风环境中升级 Astra 控制中心。
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * link:../get-started/requirements.html["开始升级之前，请确保您的环境仍满足 Astra Control Center 部署的最低要求"]。
 * 确保所有集群操作员均处于运行状况良好且可用。
 +
@@ -30,16 +30,17 @@ kubectl get apiservices
 * 从 Astra 控制中心注销。
 
 
+.关于此任务
 Astra 控制中心升级过程将指导您完成以下高级步骤：
 
-*  the Astra Control Center bundle
-*  the bundle and change directory
-*  the images to your local registry
-*  the updated Astra Control Center operator
-*  Astra Control Center
-*  third-party services (Optional)
-*  system status
-*  up ingress for load balancing
+* <<下载 Astra Control Center 捆绑包>>
+* <<打开软件包的包装并更改目录>>
+* <<将映像添加到本地注册表>>
+* <<安装更新后的 Astra 控制中心操作员>>
+* <<升级 Astra 控制中心>>
+* <<升级第三方服务（可选）>>
+* <<验证系统状态>>
+* <<设置传入以进行负载平衡>>
 
 
 
@@ -173,8 +174,8 @@ vim astra_control_center_operator_deploy.yaml
 imagePullSecrets:
 - name: <name_of_secret_with_creds_to_local_registry>
 ----
-.. 更改 `[your_registry_path]` 。 `kube-rbac-proxy` 将映像推送到注册表路径中 ,上一步。
-.. 更改 `[your_registry_path]` 。 `acc-operator-controller-manager` 将映像推送到注册表路径中 ,上一步。
+.. 更改 `[your_registry_path]` 。 `kube-rbac-proxy` 将映像推送到注册表路径中 <<substep_image_local_registry_push,上一步>>。
+.. 更改 `[your_registry_path]` 。 `acc-operator-controller-manager` 将映像推送到注册表路径中 <<substep_image_local_registry_push,上一步>>。
 .. 将以下值添加到 `env` 部分。
 +
 [listing]
@@ -275,7 +276,7 @@ kubectl edit acc -n [netapp-acc or custom namespace]
 ----
 +
 
-NOTE: 注册表路径必须与中推送映像的注册表路径匹配 ,上一步。
+NOTE: 注册表路径必须与中推送映像的注册表路径匹配 <<substep_image_local_registry_push,上一步>>。
 
 . 在中添加以下行 `additionalValues` 在中 `Spec` 在Astra控制中心CR中：
 +
@@ -405,7 +406,7 @@ NOTE: 有关 "loadbalancer" 服务类型和入口的其他详细信息，请参�
 * OpenShift 入口控制器
 
 
-.您需要什么？ #8217 ；将需要什么
+.您需要的内容
 * 在 CR 规范中，
 +
 ** 条件 `crd.externalTraefik` 存在、应将其设置为 `false` 或
