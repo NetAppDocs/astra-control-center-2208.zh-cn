@@ -1402,7 +1402,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-22 15:56:36 +0000">11/22/2022</time>
+    <time datetime="2022-12-14 18:27:46 +0000">12/14/2022</time>
     
   
 
@@ -1421,7 +1421,7 @@
 <p>对于Red Hat OpenShift环境、您可以使用 <a href="../get-started/acc_operatorhub_install.html">"备用操作步骤"</a> 使用 OpenShift OperatorHub 安装 Astra Control Center 。</p>
 </div>
 <div class="ulist">
-<div class="title">您需要什么？ #8217 ；将需要什么</div>
+<div class="title">您需要的内容</div>
 <ul>
 <li>
 <p><a href="requirements.html">"开始安装之前，请为 Astra Control Center 部署准备您的环境"</a>。</p>
@@ -1454,6 +1454,7 @@
 </ul>
 </div>
 <div class="paragraph">
+<div class="title">关于此任务</div>
 <p>Astra 控制中心安装过程将执行以下操作：</p>
 </div>
 <div class="ulist">
@@ -1512,39 +1513,40 @@
 </table>
 </div>
 <div class="paragraph">
+<div class="title">步骤</div>
 <p>要安装 Astra 控制中心，请执行以下步骤：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>and unpack the Astra Control Center bundle</p>
+<p><a href="#下载并解包astra-control-center软件包">下载并解包Astra Control Center软件包</a></p>
 </li>
 <li>
-<p>the NetApp Astra kubectl plugin</p>
+<p><a href="#安装netapp-astra-kubectl插件">安装NetApp Astra kubectl插件</a></p>
 </li>
 <li>
-<p>the images to your local registry</p>
+<p><a href="#将映像添加到本地注册表">将映像添加到本地注册表</a></p>
 </li>
 <li>
-<p>up namespace and secret for registries with auth requirements</p>
+<p><a href="#为具有身份验证要求的注册表设置命名空间和密钥">为具有身份验证要求的注册表设置命名空间和密钥</a></p>
 </li>
 <li>
-<p>the Astra Control Center operator</p>
+<p><a href="#安装-astra-控制中心操作员">安装 Astra 控制中心操作员</a></p>
 </li>
 <li>
-<p>Astra Control Center</p>
+<p><a href="#配置-astra-控制中心">配置 Astra 控制中心</a></p>
 </li>
 <li>
-<p>Astra Control Center and operator installation</p>
+<p><a href="#完成-astra-控制中心和操作员安装">完成 Astra 控制中心和操作员安装</a></p>
 </li>
 <li>
-<p>system status</p>
+<p><a href="#验证系统状态">验证系统状态</a></p>
 </li>
 <li>
-<p>up ingress for load balancing</p>
+<p><a href="#设置传入以进行负载平衡">设置传入以进行负载平衡</a></p>
 </li>
 <li>
-<p>in to the Astra Control Center UI</p>
+<p><a href="#登录到-astra-控制中心-ui">登录到 Astra 控制中心 UI</a></p>
 </li>
 </ul>
 </div>
@@ -1588,6 +1590,7 @@
 <p>NetApp Astra <code>kubectl</code> 命令行插件可节省执行与部署和升级Astra控制中心相关的常见任务所需的时间。</p>
 </div>
 <div class="paragraph">
+<div class="title">您需要的内容</div>
 <p>NetApp为不同CPU架构和操作系统的插件提供二进制文件。在执行此任务之前、您需要了解您的CPU和操作系统。在Linux和Mac操作系统上、您可以使用 <code>uname -a</code> 用于收集此信息的命令。</p>
 </div>
 <div class="olist arabic">
@@ -1885,10 +1888,10 @@ done</code></pre>
 </div>
 </li>
 <li>
-<p>更改 <code>[your_registry_path]</code> 。 <code>kube-rbac-proxy</code> 将映像推送到注册表路径中 ,上一步。</p>
+<p>更改 <code>[your_registry_path]</code> 。 <code>kube-rbac-proxy</code> 将映像推送到注册表路径中 <a href="#substep_image_local_registry_push">上一步</a>。</p>
 </li>
 <li>
-<p>更改 <code>[your_registry_path]</code> 。 <code>acc-operator-controller-manager</code> 将映像推送到注册表路径中 ,上一步。</p>
+<p>更改 <code>[your_registry_path]</code> 。 <code>acc-operator-controller-manager</code> 将映像推送到注册表路径中 <a href="#substep_image_local_registry_push">上一步</a>。</p>
 </li>
 <li>
 <p>（对于使用 Astra 数据存储预览版的安装）请参见有关的此已知问题描述 <a href="https://docs.netapp.com/us-en/astra-data-store-2112/release-notes/known-issues.html#mongodb-deployment-with-default-liveness-probe-value-fails-with-pods-in-crash-loop" target="_blank" rel="noopener">"存储类配置程序以及需要对 YAML 进行的其他更改"</a>。</p>
@@ -2024,10 +2027,10 @@ deployment.apps/acc-operator-controller-manager created</pre>
 <p>更改 <code>accountName</code> 字符串、表示要与帐户关联的名称。</p>
 </li>
 <li>
-<p>更改 <code>astraAddress</code> 指向要在浏览器中用于访问Astra的FQDN的字符串。请勿使用 <code>http://</code> 或 <code>https://</code> 地址中。复制此 FQDN 以在中使用  in to the Astra Control Center UI,后续步骤。</p>
+<p>更改 <code>astraAddress</code> 指向要在浏览器中用于访问Astra的FQDN的字符串。请勿使用 <code>http://</code> 或 <code>https://</code> 地址中。复制此 FQDN 以在中使用 <a href="#登录到-astra-控制中心-ui">后续步骤</a>。</p>
 </li>
 <li>
-<p>更改 <code>email</code> 字符串到默认的初始管理员地址。复制此电子邮件地址以在中使用  in to the Astra Control Center UI,后续步骤。</p>
+<p>更改 <code>email</code> 字符串到默认的初始管理员地址。复制此电子邮件地址以在中使用 <a href="#登录到-astra-控制中心-ui">后续步骤</a>。</p>
 </li>
 <li>
 <p>更改 <code>enrolled</code> 用于将AutoSupport 连接到 <code>false</code> 对于不具有Internet连接或保留的站点 <code>true</code> 对于已连接站点。</p>
@@ -2049,7 +2052,7 @@ deployment.apps/acc-operator-controller-manager created</pre>
 <p>(可选)更改 <code>storageClass</code> 如果您的安装需要、则为另一个Trident storageClass资源指定值。</p>
 </li>
 <li>
-<p>（可选）如果您希望集群在安装后由 Astra 控制中心自动管理，并且您已经这样了 ,已为此集群创建包含 kubeconfig 的密钥下、通过在此YAML文件中添加一个名为的新字段来提供密钥名称 <code>astraKubeConfigSecret: "acc-kubeconfig-cred or custom secret name"</code></p>
+<p>（可选）如果您希望集群在安装后由 Astra 控制中心自动管理，并且您已经这样了 <a href="#substep_kubeconfig_secret">已为此集群创建包含 kubeconfig 的密钥</a>下、通过在此YAML文件中添加一个名为的新字段来提供密钥名称 <code>astraKubeConfigSecret: "acc-kubeconfig-cred or custom secret name"</code></p>
 </li>
 <li>
 <p>完成以下步骤之一：</p>
@@ -2183,8 +2186,8 @@ spec:
 <div class="paragraph">
 <p>每个POD的状态应为 <code>Running</code>。部署系统 Pod 可能需要几分钟的时间。</p>
 </div>
-<div class="exampleblock">
-<div class="title">示例 1. 响应示例</div>
+<details>
+<summary class="title">响应示例</summary>
 <div class="content">
 <div class="listingblock">
 <div class="content">
@@ -2258,7 +2261,7 @@ vault-controller-6b954f9b76-gz9nm        1/1    Running  0        11m</pre>
 </div>
 </div>
 </div>
-</div>
+</details>
 </li>
 <li>
 <p>(可选)为确保安装完成、您可以观看 <code>acc-operator</code> 使用以下命令记录。</p>
@@ -2351,7 +2354,7 @@ astra   ACC-9aa5fdae-4214-4cb7-9976-5d8b4c0ce27f  22.08.1-26  10.111.111.111  Tr
 </ul>
 </div>
 <div class="ulist">
-<div class="title">您需要什么？ #8217 ；将需要什么</div>
+<div class="title">您需要的内容</div>
 <ul>
 <li>
 <p>所需 <a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">"入口控制器"</a> 应已部署。</p>
@@ -2627,7 +2630,7 @@ spec:
 <div class="title">步骤</div>
 <ol class="arabic">
 <li>
-<p>在浏览器中、输入在中使用的FQDN <code>astraAddress</code> 在中  <code>astra_control_center_min.yaml</code> CR时间  Astra Control Center,您安装了 Astra 控制中心。</p>
+<p>在浏览器中、输入在中使用的FQDN <code>astraAddress</code> 在中  <code>astra_control_center_min.yaml</code> CR时间 <a href="#安装 Astra 控制中心">您安装了 Astra 控制中心</a>。</p>
 </li>
 <li>
 <p>出现提示时接受自签名证书。</p>
@@ -2645,7 +2648,7 @@ spec:
 </div>
 </li>
 <li>
-<p>在Astra Control Center登录页面上、输入您用于的值 <code>email</code> 在中 <code>astra_control_center_min.yaml</code> CR时间  Astra Control Center,您安装了 Astra 控制中心、后跟一次性密码 (<code>ACC-[UUID]</code>）。</p>
+<p>在Astra Control Center登录页面上、输入您用于的值 <code>email</code> 在中 <code>astra_control_center_min.yaml</code> CR时间 <a href="#安装 Astra 控制中心">您安装了 Astra 控制中心</a>、后跟一次性密码 (<code>ACC-[UUID]</code>）。</p>
 <div class="admonitionblock note">
 <table>
 <tr>

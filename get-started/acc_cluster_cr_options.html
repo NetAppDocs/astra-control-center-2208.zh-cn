@@ -1404,7 +1404,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-22 15:56:36 +0000">11/22/2022</time>
+    <time datetime="2022-12-14 18:27:46 +0000">12/14/2022</time>
     
   
 
@@ -1498,7 +1498,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Required</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AstraControlCenter资源限制的扩展选项。请参见  combinations and incompatibilities,设置复杂性 了解此设置如何影响其他设置。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AstraControlCenter资源限制的扩展选项。请参见 <a href="#配置组合和不兼容性">设置复杂性</a> 了解此设置如何影响其他设置。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AstraKubeConfigSecret</p></td>
@@ -1512,7 +1512,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">可选</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">通用(这是默认值)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">应为配置入口Astra控制中心的类型。有效值为 <code>Generic</code> 和 <code>AccTraefik</code>。请参见  combinations and incompatibilities,设置复杂性 了解此设置如何影响其他设置。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">应为配置入口Astra控制中心的类型。有效值为 <code>Generic</code> 和 <code>AccTraefik</code>。请参见 <a href="#配置组合和不兼容性">设置复杂性</a> 了解此设置如何影响其他设置。</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">avpDeploy</p></td>
@@ -1596,7 +1596,7 @@
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">有关Astra控制中心应如何实施服务以在集群中为MTLS提供服务的选项。请参见  combinations and incompatibilities,设置复杂性 了解此设置如何影响其他设置</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">有关Astra控制中心应如何实施服务以在集群中为MTLS提供服务的选项。请参见 <a href="#配置组合和不兼容性">设置复杂性</a> 了解此设置如何影响其他设置</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">已启用MTLS.enabled</p></td>
@@ -1647,6 +1647,7 @@
 </ul>
 </div>
 <div class="paragraph">
+<div class="title">通用(默认)</div>
 <p>时间 <code>ingressType</code> 设置为 <code>Generic</code>、Astra Control不会安装任何传入资源。假设用户有一种通用方法来保护流量并通过其网络将流量路由到Kubernetes集群上运行的应用程序、他们希望在此使用相同的机制。当用户创建入口以将流量路由到Astra Control时、该入口需要指向端口80上的内部trafik服务。以下是一个使用Generic ingressType设置的nginx入口资源示例。</p>
 </div>
 <div class="listingblock">
@@ -1688,6 +1689,7 @@ spec:
 </table>
 </div>
 <div class="paragraph">
+<div class="title">AccTraefik</div>
 <p>时间 <code>ingressType</code> 设置为 <code>AccTraefik</code>、Astra控制中心将其Traefik网关部署为Kubernetes负载平衡器类型的服务。用户需要提供外部负载平衡器(如MetalLB)、以使Astra控制中心获得外部IP。</p>
 </div>
 </div>
