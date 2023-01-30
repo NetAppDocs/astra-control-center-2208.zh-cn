@@ -70,7 +70,6 @@ NOTE: 这些要求假定 Astra 控制中心是运行环境中唯一运行的应�
 * * 天文学 Trident / ONTAP 配置 * ：天文学控制中心要求创建一个存储类并将其设置为默认存储类。Astra 控制中心支持由 Astra Trident 提供的以下 ONTAP 驱动程序：
 +
 ** ontap-NAS
-** ontap-nas-flexgroup
 ** ontap-san
 ** ontap-san-economy.
 
