@@ -154,7 +154,7 @@ NOTE: AWS 注册表令牌将在 12 小时后过期，之后您必须续订 Docke
 
 . 创建AWS虚拟网络。
 . 查看 EC2 计算实例。这可以是 AWS 中的裸机服务器或 VM 。
-. 如果实例类型尚未与主节点和工作节点的 Astra 最低资源要求匹配，请更改 AWS 中的实例类型以满足 Astra 要求。请参见 link:../requirements.html["Astra 控制中心要求"]。
+. 如果实例类型尚未与主节点和工作节点的 Astra 最低资源要求匹配，请更改 AWS 中的实例类型以满足 Astra 要求。  请参见 link:../get-started/requirements.html["Astra 控制中心要求"]。
 . 至少创建一个 AWS S3 存储分段来存储备份。
 . 创建 AWS 弹性容器注册表（ ECR ）以托管所有 AccR 映像。
 +
@@ -561,11 +561,7 @@ NOTE: 这些要求假定 Astra 控制中心是运行环境中唯一运行的应�
 
 第一步是在 Azure 上安装 RedHat OpenShift 集群。
 
-有关安装说明，请参见以下内容：
-
-* https://docs.openshift.com/container-platform/4.8/installing/installing_aws/installing-azure-default.html["在 Azure 上安装 OpenShift 集群"^]。
-* https://docs.openshift.com/container-platform/4.8/installing/installing_azure/installing-azure-account.html#installing-azure-account["安装 Azure 帐户"^]。
-
+有关安装说明、请参见上的RedHat文档 https://docs.openshift.com/container-platform["在Azure上安装OpenShift集群"^] 和 https://docs.openshift.com/container-platform["安装Azure帐户"^]。
 
 
 

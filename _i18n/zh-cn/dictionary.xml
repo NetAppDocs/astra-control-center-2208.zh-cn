@@ -275,7 +275,6 @@
   <block id="4d40a8e178faea46fe31329801bc6573" category="list-text">* 映像注册表 * ：您必须具有可将 Astra 控制中心构建映像推送到的现有私有 Docker 映像注册表。您需要提供要将映像上传到的映像注册表的 URL 。</block>
   <block id="df819717a2baf5b48925d2b4cdaf4745" category="list-text">* 天文学 Trident / ONTAP 配置 * ：天文学控制中心要求创建一个存储类并将其设置为默认存储类。Astra 控制中心支持由 Astra Trident 提供的以下 ONTAP 驱动程序：</block>
   <block id="8321592ce24c8a122ecf26a63cfca407" category="list-text">ontap-NAS</block>
-  <block id="844e84da8e822b4a33c4d8188da97937" category="list-text">ontap-nas-flexgroup</block>
   <block id="73a3350a1b91aeb6e2836fdf5975672c" category="list-text">ontap-san</block>
   <block id="3016c12c1db45f14c80c9c1731b9c26a" category="list-text">ontap-san-economy.</block>
   <block id="a194c96c412e6851d927b9d0e77bba07" category="paragraph">在 OpenShift 环境中克隆应用程序期间， Astra Control Center 需要允许 OpenShift 挂载卷并更改文件所有权。因此，您需要配置 ONTAP 卷导出策略以允许执行这些操作。您可以使用以下命令执行此操作：</block>
@@ -802,7 +801,6 @@
   <block id="e874bd0f330d9513016dc844dfd62e6f" category="paragraph">按照 AWS 文档完成以下步骤。请参见<block ref="b5a7979c22035fe192b9eb8d0cab1e4a" category="inline-link-rx"></block>。</block>
   <block id="9c7a256a23d947f541662b1e88bac33d" category="list-text">创建AWS虚拟网络。</block>
   <block id="92d9212a67ec9da982a091cf92cb4347" category="list-text">查看 EC2 计算实例。这可以是 AWS 中的裸机服务器或 VM 。</block>
-  <block id="b881f78be517f5315cfb2d556f3448f7" category="list-text">如果实例类型尚未与主节点和工作节点的 Astra 最低资源要求匹配，请更改 AWS 中的实例类型以满足 Astra 要求。请参见 <block ref="32be9c8362ea42075ea0b5d43bb3b5d0" category="inline-link-macro-rx"></block>。</block>
   <block id="b109e192f966bb3bb3e8cd30e1a59bfa" category="list-text">至少创建一个 AWS S3 存储分段来存储备份。</block>
   <block id="e5c5351f3ea6206a7f110205b4155acc" category="list-text">创建 AWS 弹性容器注册表（ ECR ）以托管所有 AccR 映像。</block>
   <block id="9d58e473a9f64a9efe76c63ca0a30602" category="admonition">如果不创建ECR、则Astra控制中心无法从包含Cloud Volumes ONTAP 且具有AWS后端的集群访问监控数据。如果您尝试使用 Astra 控制中心发现和管理的集群没有 AWS ECR 访问权限，则会导致出现问题描述 。</block>
@@ -913,9 +911,6 @@
   <block id="2cce86879561a32f83b0b211ad079596" category="section-title">在 Azure 上安装 RedHat OpenShift 集群</block>
   <block id="ac7776656696332f732a35f1a0662432" category="paragraph">第一步是在 Azure 上安装 RedHat OpenShift 集群。</block>
   <block id="4f6685bd07b182993d024dcf856ff5ae" category="inline-link">在 Azure 上安装 OpenShift 集群</block>
-  <block id="fef256305fde869fc9c1b90f96dbebe5" category="list-text"><block ref="6613cf818db4dcdf36b939920f432c05" category="inline-link-rx"></block>。</block>
-  <block id="eed9d4fe807c07d271c864a1240c1c3f" category="inline-link">安装 Azure 帐户</block>
-  <block id="03936dba93dbfb5fc2df3ced6ce0b025" category="list-text"><block ref="2950a8cca92e141f7cc27cfe82878caa" category="inline-link-rx"></block>。</block>
   <block id="9b227636b2d4cea11291793360089d9f" category="section-title">创建 Azure 资源组</block>
   <block id="b15c7c1cada48f735340ffa1ec2e4b6d" category="paragraph">至少创建一个 Azure 资源组。</block>
   <block id="f754cf28e9ca6bd457246cb85d6d5535" category="admonition">OpenShift 可能会创建自己的资源组。除了这些之外，您还应定义 Azure 资源组。请参见 OpenShift 文档。</block>
@@ -2717,4 +2712,8 @@
   <block id="8ab08c3e81a1ee43c6b03a22403291db" category="section-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block> 发生灾难时、请使用最新备份或复制功能将应用程序还原到远程系统</block>
   <block id="53c5fac0ba78b08ca3f0a270b746c5d2" category="section-title">重置其他用户的密码</block>
   <block id="edb74efc05972c268b6cccf83996ac3e" category="section-title">更改用户的角色</block>
+  <block id="1ba6670409b12d2ecffe5f765b22636d" category="list-text">如果实例类型尚未与主节点和工作节点的 Astra 最低资源要求匹配，请更改 AWS 中的实例类型以满足 Astra 要求。  请参见 <block ref="a41c664e3d2520e4c4deb907d0286272" category="inline-link-macro-rx"></block>。</block>
+  <block id="284a8b144f9341c750b469b574fb8c00" category="inline-link">在Azure上安装OpenShift集群</block>
+  <block id="026f21beafa7ab4dd2e0a19c7d485bb6" category="inline-link">安装Azure帐户</block>
+  <block id="49ffba9fa4ce5bf749cec20def44c0b9" category="paragraph">有关安装说明、请参见上的RedHat文档<block ref="2b5694f45e8e8a8a0bd04ce92001fd2c" category="inline-link-rx"></block> 和<block ref="b57239f3f933c36abb901cdf3e168d8f" category="inline-link-rx"></block>。</block>
 </blocks>
