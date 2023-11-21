@@ -588,7 +588,7 @@ NOTE: OpenShift 可能会创建自己的资源组。除了这些之外，您还�
 
 接下来、将Azure配置为创建虚拟网络、设置计算实例、创建Azure Blob容器、创建Azure容器注册表(ACR)以托管Astra控制中心映像、并将这些映像推送到此注册表。
 
-按照 Azure 文档完成以下步骤。请参见 https://docs.openshift.com/container-platform/4.8/installing/installing_aws/installing-azure-default.html["在 Azure 上安装 OpenShift 集群"^]。
+按照 Azure 文档完成以下步骤。请参见 https://docs.openshift.com/container-platform/4.8/installing/installing_azure/preparing-to-install-on-azure.html["在 Azure 上安装 OpenShift 集群"^]。
 
 . 创建Azure虚拟网络。
 . 查看计算实例。这可以是 Azure 中的裸机服务器或 VM 。
